@@ -10,7 +10,7 @@ class ArtikelController extends Controller
 {
     public function index()
     {
-        $title = 'Daftar Artikel';
+        $title = 'Daftar Artikel'; #testpush
         $items = Artikel::all();
         return view('admin.artikels.index', compact('title', 'items'));
     }
