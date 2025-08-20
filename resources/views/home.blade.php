@@ -32,7 +32,7 @@
             <h2 class="text-2xl font-bold text-jabal-green md:hidden">Wisata Jabal Nur</h2>
             <nav class="mt-8 md:mt-0">
                 <ul class="space-y-2">
-                    <li><a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span class="ml-3">Sejarah Ulama</span></a></li>
+                    <li><a href="{{ route('ulama.index') }}" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span class="ml-3">Sejarah Ulama</span></a></li>
                     <li><a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span class="ml-3">Fasilitas</span></a></li>
                     <li><a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span class="ml-3">UMKM Halal</span></a></li>
                     <li><a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span class="ml-3">Ceramah & Kajian</span></a></li>
