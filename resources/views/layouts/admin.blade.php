@@ -1,93 +1,130 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full bg-gray-100">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Admin Panel')</title>
 
-    <!-- Bootstrap 5 CSS CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Optional: Bootstrap Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <style>
-        body {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        .admin-content {
-            flex: 1;
+        [x-cloak] {
+            display: none !important;
         }
     </style>
 </head>
-<body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{{ route('admin.dashboard') }}">Admin Panel</a>
-            <form action="{{ route('logout') }}" method="POST" class="d-flex">
-                @csrf
-                <button class="btn btn-outline-light btn-sm" type="submit">
-                    <i class="bi bi-box-arrow-right"></i> Logout
+<body class="h-full font-sans">
+    {{-- Inisialisasi state Alpine.js untuk sidebar --}}
+    <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-100">
+
+        <aside
+            class="fixed inset-y-0 left-0 z-30 w-64 bg-gray-800 text-white transform transition-transform duration-300 ease-in-out md:relative md:translate-x-0"
+            :class="{ 'translate-x-0': sidebarOpen, '-translate-x-full': !sidebarOpen }" @click.away="sidebarOpen = false"
+            x-cloak>
+            <div class="h-16 flex items-center justify-center text-xl font-bold border-b border-gray-700">
+                <a href="{{ route('admin.dashboard') }}" class="text-white hover:text-gray-300 transition-colors">
+                    Admin Panel
+                </a>
+            </div>
+            <nav class="flex-1 px-2 py-4 space-y-2">
+                @php
+                    $menuItems = [
+                        'posts' => ['icon' => 'bi-pin-angle-fill', 'label' => 'Posts', 'route' => 'admin.posts.index'],
+                        'ulama' => [
+                            'icon' => 'bi-person-lines-fill',
+                            'label' => 'Data Ulama',
+                            'route' => 'admin.ulama.index',
+                        ],
+                        'fasilitas' => [
+                            'icon' => 'bi-building',
+                            'label' => 'Data Fasilitas',
+                            'route' => 'admin.fasilitas.index',
+                        ],
+                        'umkm' => ['icon' => 'bi-shop', 'label' => 'Data UMKM', 'route' => 'admin.umkm.index'],
+                        'ceramahs' => [
+                            'icon' => 'bi-mic',
+                            'label' => 'Ceramah & Kajian',
+                            'route' => 'admin.ceramahs.index',
+                        ],
+                        'ziarahs' => [
+                            'icon' => 'bi-geo-alt',
+                            'label' => 'Lokasi Ziarah',
+                            'route' => 'admin.ziarahs.index',
+                        ],
+                        'videos' => ['icon' => 'bi-play-btn', 'label' => 'Video', 'route' => 'admin.videos.index'],
+                        'paketwisatas' => [
+                            'icon' => 'bi-backpack',
+                            'label' => 'Paket Wisata',
+                            'route' => 'admin.paketwisatas.index',
+                        ],
+                        'sertifikasis' => [
+                            'icon' => 'bi-award',
+                            'label' => 'Sertifikasi Halal',
+                            'route' => 'admin.sertifikasis.index',
+                        ],
+                        'manuskrips' => [
+                            'icon' => 'bi-journal-bookmark',
+                            'label' => 'Arsip Manuskrip',
+                            'route' => 'admin.manuskrips.index',
+                        ],
+                        'stakeholders' => [
+                            'icon' => 'bi-people',
+                            'label' => 'Stakeholders',
+                            'route' => 'admin.stakeholders.index',
+                        ],
+                        'potensi-kerjasama' => [
+                            'icon' => 'bi-diagram-3',
+                            'label' => 'Potensi Kerjasama',
+                            'route' => 'admin.potensi-kerjasama.index',
+                        ],
+                    ];
+                @endphp
+
+                @foreach ($menuItems as $key => $item)
+                    <a href="{{ route($item['route']) }}"
+                        class="flex items-center px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200
+                              {{ request()->routeIs('admin.' . $key . '.*') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
+                        <i class="bi {{ $item['icon'] }} mr-3"></i>
+                        {{ $item['label'] }}
+                    </a>
+                @endforeach
+            </nav>
+        </aside>
+
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <header
+                class="bg-white shadow-sm flex items-center justify-between md:justify-end px-4 sm:px-6 lg:px-8 py-4">
+                <button @click.stop="sidebarOpen = !sidebarOpen" class="md:hidden text-gray-500 focus:outline-none">
+                    <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                    </svg>
                 </button>
-            </form>
-        </div>
-    </nav>
 
-    <!-- Main Content -->
-    <div class="container-fluid mt-4 admin-content">
-        <div class="row">
-            <!-- Sidebar -->
-            <div class="col-md-3 mb-3">
-                <div class="list-group">
-                    <a href="{{ route('admin.ulama.index') }}" class="list-group-item list-group-item-action">
-    <i class="bi bi-person-lines-fill"></i> Data Ulama
-</a>
-<a href="{{ route('admin.fasilitas.index') }}" class="list-group-item list-group-item-action">
-    <i class="bi bi-building"></i> Data Fasilitas
-</a>
-<a href="{{ route('admin.umkm.index') }}" class="list-group-item list-group-item-action">
-    <i class="bi bi-shop"></i> Data UMKM
-</a>
-<a href="{{ route('admin.ceramahs.index') }}" class="list-group-item list-group-item-action">
-    <i class="bi bi-mic"></i> Ceramah & Kajian
-</a>
-<a href="{{ route('admin.ziarahs.index') }}" class="list-group-item list-group-item-action">
-    <i class="bi bi-geo-alt"></i> Lokasi Ziarah
-</a>
-<a href="{{ route('admin.videos.index') }}" class="list-group-item list-group-item-action">
-    <i class="bi bi-play-btn"></i> Video
-</a>
-<a href="{{ route('admin.paketwisatas.index') }}" class="list-group-item list-group-item-action">
-    <i class="bi bi-backpack4"></i> Paket Wisata
-</a>
-<a href="{{ route('admin.sertifikasis.index') }}" class="list-group-item list-group-item-action">
-    <i class="bi bi-award"></i> Sertifikasi Halal
-</a>
-<a href="{{ route('admin.manuskrips.index') }}" class="list-group-item list-group-item-action">
-    <i class="bi bi-journal-bookmark"></i> Arsip Manuskrip
-</a>
-<a href="{{ route('admin.stakeholders.index') }}" class="list-group-item list-group-item-action">
-    <i class="bi bi-people"></i> Stakeholders
-</a>
-                </div>
-            </div>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="text-sm font-medium text-gray-500 hover:text-gray-700">
+                        <i class="bi bi-box-arrow-right mr-1"></i> Logout
+                    </button>
+                </form>
+            </header>
 
-            <!-- Content -->
-            <div class="col-md-9">
+            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
                 @yield('content')
-            </div>
+            </main>
         </div>
+
+        <div x-show="sidebarOpen" @click="sidebarOpen = false" class="fixed inset-0 bg-black opacity-50 z-20 md:hidden"
+            x-cloak></div>
     </div>
-
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-3 mt-auto">
-        &copy; {{ date('Y') }} Admin Panel - Wisata Halal Jabal Nur
-    </footer>
-
-    <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
