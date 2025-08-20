@@ -12,7 +12,6 @@ class Ziarah extends Model
     protected $fillable = [
         'nama_lokasi',
         'deskripsi',
-        'latitude',
-        'longitude',
+        'google_maps_link',
     ];
 }

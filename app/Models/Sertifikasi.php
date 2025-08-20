@@ -15,4 +15,9 @@ class Sertifikasi extends Model
         'tanggal_terbit',
         'tanggal_kedaluwarsa',
     ];
+
+    protected $casts = [
+        'tanggal_terbit' => 'date',
+        'tanggal_kedaluwarsa' => 'date',
+    ];
 }

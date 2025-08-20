@@ -20,17 +20,10 @@ class Umkm extends Model
         'deskripsi_produk',
         'lokasi',
         'sertifikat_halal',
+        'foto',
+        'file_sertifikat', // Kolom baru
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * Casting memastikan bahwa atribut tertentu dikonversi ke tipe data
-     * yang benar saat diakses, membuatnya lebih mudah untuk bekerja
-     * dengan nilai boolean, tanggal, atau JSON.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'sertifikat_halal' => 'boolean',
     ];
