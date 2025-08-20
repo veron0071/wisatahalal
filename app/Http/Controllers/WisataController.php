@@ -205,4 +205,9 @@ class WisataController extends Controller
     {
         return view('video.show', compact('video'));
     }
+
+    public function programIndex()
+{
+    return view('program.index'); 
+}
 }

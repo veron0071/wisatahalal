@@ -42,6 +42,7 @@ Route::get('/ulama/{ulama}', [WisataController::class, 'ulamaShow'])->name('ulam
 Route::get('/fasilitas', [WisataController::class, 'fasilitasIndex'])->name('fasilitas.index');
 Route::get('/fasilitas/{fasilitas}', [WisataController::class, 'fasilitasShow'])->name('fasilitas.show');
 Route::get('/umkm', [WisataController::class, 'umkmIndex'])->name('umkm.index');
+Route::get('/program', [WisataController::class, 'programIndex'])->name('program.index');
 
 /*
 |--------------------------------------------------------------------------
