@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Ziarah;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -11,41 +10,52 @@ class ZiarahController extends Controller
 {
     public function index()
     {
-        $title = 'Daftar Ziarah';
-        $items = Ziarah::all();
-        return view('admin.ziarahs.index', compact('title', 'items'));
+        $ziarahs = Ziarah::latest()->paginate(10);
+        return view('admin.ziarahs.index', compact('ziarahs'));
     }
+
     public function create()
     {
-        $title = 'Tambah Ziarah';
-        $action = route('admin.ziarahs.store');
-        return view('admin.ziarahs.create', compact('title', 'action'));
+        return view('admin.ziarahs.create');
     }
+
     public function store(Request $request)
     {
-        Ziarah::create($request->all());
-        return redirect()->route('admin.ziarahs.index')->with('success', 'Data berhasil ditambahkan');
+        $validated = $request->validate([
+            'nama_lokasi' => 'required|string|max:255',
+            'deskripsi' => 'nullable|string',
+            'google_maps_link' => 'required|url',
+        ]);
+
+        Ziarah::create($validated);
+        return redirect()->route('admin.ziarahs.index')->with('success', 'Data lokasi ziarah berhasil ditambahkan.');
     }
+
     public function show(Ziarah $ziarah)
     {
-        $title = 'Detail Ziarah';
-        return view('admin.ziarahs.show', compact('title', 'ziarah'));
+        return view('admin.ziarahs.show', compact('ziarah'));
     }
+
     public function edit(Ziarah $ziarah)
     {
-        $title = 'Edit Ziarah';
-        $action = route('admin.ziarahs.update', $ziarah);
-        return view('admin.ziarahs.edit', compact('title', 'action', 'ziarah'));
+        return view('admin.ziarahs.edit', compact('ziarah'));
     }
+
     public function update(Request $request, Ziarah $ziarah)
     {
-        $ziarah->update($request->all());
-        return redirect()->route('admin.ziarahs.index')->with('success', 'Data berhasil diperbarui');
+        $validated = $request->validate([
+            'nama_lokasi' => 'required|string|max:255',
+            'deskripsi' => 'nullable|string',
+            'google_maps_link' => 'required|url',
+        ]);
+
+        $ziarah->update($validated);
+        return redirect()->route('admin.ziarahs.index')->with('success', 'Data lokasi ziarah berhasil diperbarui.');
     }
+
     public function destroy(Ziarah $ziarah)
     {
         $ziarah->delete();
-        return back()->with('success', 'Data berhasil dihapus');
+        return redirect()->route('admin.ziarahs.index')->with('success', 'Data lokasi ziarah berhasil dihapus.');
     }
 }
-
