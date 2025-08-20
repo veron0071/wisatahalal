@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\PotensiKerjasama;
 
 return new class extends Migration
 {
@@ -11,16 +12,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('umkms', function (Blueprint $table) {
+        Schema::create('potensi_kerjasamas', function (Blueprint $table) {
             $table->id();
+             $table->string('kategori_mitra');
+            $table->text('mitra_potensial');
+            $table->text('isu_need_utama');
+            $table->text('nilai_tambah_pd_mes');
             $table->timestamps();
-            $table->string('nama_usaha');
-            $table->text('nama_pemilik');
-            $table->text('deskripsi_produk')->nullable();
-            $table->string('foto')->nullable();
-            $table->string('lokasi')->nullable();
-            $table->string('sertifikat_halal')->nullable();
-
         });
     }
 
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('umkms');
+        Schema::dropIfExists('potensi_kerjasamas');
     }
 };

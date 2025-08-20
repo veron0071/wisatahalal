@@ -11,16 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('umkms', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->string('nama_usaha');
-            $table->text('nama_pemilik');
-            $table->text('deskripsi_produk')->nullable();
+            $table->string('judul');
+            $table->text('isi');
+            $table->string('kategori'); // berita atau pengumuman
             $table->string('foto')->nullable();
-            $table->string('lokasi')->nullable();
-            $table->string('sertifikat_halal')->nullable();
-
+            $table->timestamps();
         });
     }
 
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('umkms');
+        Schema::dropIfExists('posts');
     }
 };
