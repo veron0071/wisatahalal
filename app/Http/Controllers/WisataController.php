@@ -20,10 +20,13 @@ use App\Models\Video;
 
 class WisataController extends Controller
 {
+
+    private const PAGINATION_COUNT = 9;
+
     // =================== ULAMA ===================
     public function ulamaIndex()
     {
-        $ulamas = Ulama::paginate(10);
+        $ulamas = Ulama::latest()->paginate(self::PAGINATION_COUNT);
         return view('ulama.index', compact('ulamas'));
     }
 
@@ -35,8 +38,9 @@ class WisataController extends Controller
     // =================== FASILITAS ===================
     public function fasilitasIndex()
     {
-        $fasilitas = Fasilitas::paginate(10);
-        return view('fasilitas.index', compact('fasilitas'));
+        // Perbaikan: $fasilitas -> $fasilitass
+        $fasilitass = Fasilitas::latest()->paginate(self::PAGINATION_COUNT);
+        return view('fasilitas.index', compact('fasilitass'));
     }
 
     public function fasilitasShow(Fasilitas $fasilitas)
@@ -47,7 +51,7 @@ class WisataController extends Controller
     // =================== UMKM ===================
     public function umkmIndex()
     {
-        $umkms = Umkm::paginate(10);
+        $umkms = Umkm::latest()->paginate(self::PAGINATION_COUNT);
         return view('umkm.index', compact('umkms'));
     }
 
@@ -59,7 +63,7 @@ class WisataController extends Controller
     // =================== CERAMAH ===================
     public function ceramahIndex()
     {
-        $ceramahs = Ceramah::paginate(10);
+        $ceramahs = Ceramah::latest()->paginate(self::PAGINATION_COUNT);
         return view('ceramah.index', compact('ceramahs'));
     }
 
@@ -71,7 +75,7 @@ class WisataController extends Controller
     // =================== HERITAGE ===================
     public function heritageIndex()
     {
-        $heritages = Heritage::paginate(10);
+        $heritages = Heritage::latest()->paginate(self::PAGINATION_COUNT);
         return view('heritage.index', compact('heritages'));
     }
 
@@ -83,7 +87,7 @@ class WisataController extends Controller
     // =================== ZIARAH ===================
     public function ziarahIndex()
     {
-        $ziarahs = Ziarah::paginate(10);
+        $ziarahs = Ziarah::latest()->paginate(self::PAGINATION_COUNT);
         return view('ziarah.index', compact('ziarahs'));
     }
 
@@ -95,7 +99,7 @@ class WisataController extends Controller
     // =================== MANUSKRIP ===================
     public function manuskripIndex()
     {
-        $manuskrips = Manuskrip::paginate(10);
+        $manuskrips = Manuskrip::latest()->paginate(self::PAGINATION_COUNT);
         return view('manuskrip.index', compact('manuskrips'));
     }
 
@@ -107,7 +111,7 @@ class WisataController extends Controller
     // =================== PAKET WISATA ===================
     public function paketWisataIndex()
     {
-        $paketWisatas = PaketWisata::paginate(10);
+        $paketWisatas = PaketWisata::latest()->paginate(self::PAGINATION_COUNT);
         return view('paketwisata.index', compact('paketWisatas'));
     }
 
@@ -119,19 +123,21 @@ class WisataController extends Controller
     // =================== LOKASI ZIARAH ===================
     public function lokasiZiarahIndex()
     {
-        $lokasiZiarahs = LokasiZiarah::paginate(10);
-        return view('lokasiziayah.index', compact('lokasiZiarahs'));
+        // Perbaikan: 'lokasiziayah' -> 'lokasiziarah'
+        $lokasiZiarahs = LokasiZiarah::latest()->paginate(self::PAGINATION_COUNT);
+        return view('lokasiziarah.index', compact('lokasiZiarahs'));
     }
 
     public function lokasiZiarahShow(LokasiZiarah $lokasiZiarah)
     {
-        return view('lokasiziayah.show', compact('lokasiZiarah'));
+        // Perbaikan: 'lokasiziayah' -> 'lokasiziarah'
+        return view('lokasiziarah.show', compact('lokasiZiarah'));
     }
 
     // =================== PELATIHAN ===================
     public function pelatihanIndex()
     {
-        $pelatihans = Pelatihan::paginate(10);
+        $pelatihans = Pelatihan::latest()->paginate(self::PAGINATION_COUNT);
         return view('pelatihan.index', compact('pelatihans'));
     }
 
@@ -143,7 +149,7 @@ class WisataController extends Controller
     // =================== SERTIFIKASI ===================
     public function sertifikasiIndex()
     {
-        $sertifikasis = Sertifikasi::paginate(10);
+        $sertifikasis = Sertifikasi::latest()->paginate(self::PAGINATION_COUNT);
         return view('sertifikasi.index', compact('sertifikasis'));
     }
 
@@ -155,7 +161,7 @@ class WisataController extends Controller
     // =================== ARTIKEL ===================
     public function artikelIndex()
     {
-        $artikels = Artikel::paginate(10);
+        $artikels = Artikel::latest()->paginate(self::PAGINATION_COUNT);
         return view('artikel.index', compact('artikels'));
     }
 
@@ -167,7 +173,7 @@ class WisataController extends Controller
     // =================== KAJIAN ===================
     public function kajianIndex()
     {
-        $kajians = Kajian::paginate(10);
+        $kajians = Kajian::latest()->paginate(self::PAGINATION_COUNT);
         return view('kajian.index', compact('kajians'));
     }
 
@@ -179,7 +185,7 @@ class WisataController extends Controller
     // =================== STAKEHOLDER ===================
     public function stakeholderIndex()
     {
-        $stakeholders = Stakeholder::paginate(10);
+        $stakeholders = Stakeholder::latest()->paginate(self::PAGINATION_COUNT);
         return view('stakeholder.index', compact('stakeholders'));
     }
 
@@ -191,7 +197,7 @@ class WisataController extends Controller
     // =================== VIDEO ===================
     public function videoIndex()
     {
-        $videos = Video::paginate(10);
+        $videos = Video::latest()->paginate(self::PAGINATION_COUNT);
         return view('video.index', compact('videos'));
     }
 
