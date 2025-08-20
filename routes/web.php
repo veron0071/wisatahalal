@@ -10,6 +10,7 @@ use App\Http\Controllers\ProfileController;
 
 // Controllers for Admin Panel
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\UlamaController;
 use App\Http\Controllers\Admin\FasilitasController;
 use App\Http\Controllers\Admin\UmkmController;
@@ -25,6 +26,7 @@ use App\Http\Controllers\Admin\LokasiZiarahController;
 use App\Http\Controllers\Admin\PelatihanController;
 use App\Http\Controllers\Admin\ArtikelController;
 use App\Http\Controllers\Admin\KajianController;
+use App\Http\Controllers\Admin\PotensiKerjasamaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,8 +69,11 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+    Route::resource('posts', PostController::class);
     Route::resource('ulama', UlamaController::class);
-    Route::resource('fasilitas', FasilitasController::class);
+    // Route::resource('fasilitas', FasilitasController::class);
+    // Tak ganti mas iki error
+    Route::resource('fasilitas', FasilitasController::class)->parameters(['fasilitas' => 'fasilitas']);
     Route::resource('umkm', UmkmController::class);
     Route::resource('ceramahs', CeramahController::class);
     Route::resource('paketwisatas', PaketWisataController::class);
@@ -82,6 +87,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('pelatihans', PelatihanController::class);
     Route::resource('artikels', ArtikelController::class);
     Route::resource('kajians', KajianController::class);
+    Route::resource('potensi-kerjasama', PotensiKerjasamaController::class);
 });
 
 require __DIR__.'/auth.php';
