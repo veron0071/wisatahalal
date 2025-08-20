@@ -4,30 +4,115 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Wisata Halal Jabal Nur')</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    @vite(['resources/scss/app.scss', 'resources/js/app.js'])
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 'jabal-green': '#255F38', 'jabal-light': '#1F7D53', 'jabal-putih': '#FFFFFF' },
+                    fontFamily: { sans: ['Poppins', 'sans-serif'] },
+                    borderRadius: { 'xl': '1rem', '2xl': '1.25rem' }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        .custom-shadow { box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07); }
+        .custom-shadow-hover:hover { box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1); }
+    </style>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="{{ route('home') }}">Wisata Jabal Nur</a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="{{ route('ulama.index') }}">Sejarah Ulama</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('fasilitas.index') }}">Fasilitas</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('umkm.index') }}">UMKM Halal</a></li>
+<body class="bg-slate-50">
+
+    <div class="relative min-h-screen md:flex">
+        <aside id="sidebar" class="fixed top-0 left-0 z-50 w-64 h-screen bg-white border-r p-6 transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
+            <h2 class="text-2xl font-bold text-jabal-green">Wisata Jabal Nur</h2>
+            <nav class="mt-8">
+                <ul class="space-y-2">
+                    <li><a href="{{ route('ulama.index') }}" class="flex items-center p-2 text-base font-semibold text-jabal-green bg-gray-100 rounded-lg"><span class="ml-3">Sejarah Ulama</span></a></li>
+                    <li><a href="{{ route('fasilitas.index') }}" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span class="ml-3">Fasilitas</span></a></li>
+                    <li><a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span class="ml-3">UMKM Halal</span></a></li>
+                    <li><a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span class="ml-3">Ceramah & Kajian</span></a></li>
+                    <li><a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span class="ml-3">Lokasi Ziarah</span></a></li>
+                    <li><a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span class="ml-3">Video</span></a></li>
+                    <li><a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span class="ml-3">Paket Wisata</span></a></li>
+                    <li><a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span class="ml-3">Sertifikasi Halal</span></a></li>
+                    <li><hr class="my-2 border-gray-200"></li>
+                    <li><a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span class="ml-3">Berita</span></a></li>
+                    <li><a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span class="ml-3">Pengumuman</span></a></li>
                 </ul>
-            </div>
+            </nav>
+        </aside>
+
+        <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
+
+        <div id="main-content" class="flex-1 flex flex-col transition-all duration-300 ease-in-out">
+            <header class="bg-white p-4 border-b flex items-center justify-between sticky top-0 z-30">
+                <div class="flex items-center gap-4">
+                    <button id="sidebar-toggle-btn">
+                        <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+                        <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                    </button>
+                    <a href="{{ route('home') }}" class="text-xl font-bold text-jabal-green">Wisata Jabal Nur</a>
+                </div>
+                <div class="hidden md:flex items-center gap-2">
+                    <a href="#" class="px-4 py-2 text-sm font-semibold text-gray-600 rounded-lg hover:bg-gray-100 transition-colors">Berita</a>
+                    <a href="#" class="px-4 py-2 text-sm font-semibold text-gray-600 rounded-lg hover:bg-gray-100 transition-colors">Pengumuman</a>
+                </div>
+            </header>
+
+            <main class="flex-grow">
+                @yield('content')
+            </main>
+
+            <footer class="text-center py-8 bg-slate-50 border-t">
+                <p class="text-gray-500 text-sm">&copy; {{ date('Y') }} Wisata Halal Jabal Nur. Dikembangkan oleh PD MES Kendal.</p>
+            </footer>
         </div>
-    </nav>
+    </div>
 
-    <main class="container mt-4">
-        @yield('content')
-    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            const toggleBtn = document.getElementById('sidebar-toggle-btn');
+            const iconOpen = document.getElementById('icon-open');
+            const iconClose = document.getElementById('icon-close');
+            const mainContent = document.getElementById('main-content');
 
-    <footer class="text-center mt-5 py-3 bg-light">
-        <p>&copy; 2025 Wisata Halal Jabal Nur. Dikembangkan oleh PD MES Kendal.</p>
-    </footer>
+            function toggleSidebar() {
+                const isSidebarOpen = !sidebar.classList.contains('-translate-x-full');
+                
+                sidebar.classList.toggle('-translate-x-full');
+                iconOpen.classList.toggle('hidden');
+                iconClose.classList.toggle('hidden');
+
+                // Logika untuk mobile (menggunakan overlay) vs desktop (mendorong konten)
+                if (window.innerWidth < 768) {
+                    overlay.classList.toggle('hidden');
+                } else {
+                    mainContent.classList.toggle('ml-64', !isSidebarOpen);
+                }
+            }
+            
+            // Cek kondisi awal saat halaman dimuat untuk desktop
+            if (window.innerWidth >= 768) {
+                // Biarkan sidebar tertutup saat pertama kali dimuat
+                sidebar.classList.add('-translate-x-full');
+                mainContent.classList.remove('ml-64');
+                iconOpen.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+            }
+
+            toggleBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleSidebar();
+            });
+            overlay.addEventListener('click', toggleSidebar);
+        });
+    </script>
 </body>
 </html>

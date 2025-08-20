@@ -1,35 +1,62 @@
-@extends('layouts.app') {{-- Pastikan ini layout utama kamu --}}
+@extends('layouts.app')
+@section('title', 'Wisata Halal Jabal Nur')
 
 @section('content')
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Wisata Jabal Nur</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+                <div class="container mx-auto px-6 md:px-12 py-12">
+                    <section>
+                        <h1 class="text-4xl font-bold text-jabal-green">Fasilitas</h1>
+                        <hr class="mt-4 mb-12 border-jabal-green border-t-2">
+                    </section>
+                    
+                    <section class="mb-16">
+                        <div class="bg-white rounded-2xl custom-shadow p-8 md:p-12">
+                            <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                                <div class="md:w-1/2">
+                                    <h2 class="text-3xl font-bold text-jabal-green mb-4">Taman Halal</h2>
+                                    <p class="text-gray-600 leading-relaxed text-justify">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eu magna et sapien volutpat commodo. Ut quis porta arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Curabitur interdum efficitur luctus. Curabitur bibendum mattis eros.
+                                    </p>
+                                    <a href="#" class="mt-6 inline-flex items-center gap-2 bg-jabal-green text-white font-semibold px-6 py-3 rounded-full hover:bg-jabal-light shadow-lg transition-all hover:shadow-xl">
+                                        Kunjungi
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        </svg>
+                                    </a>
+                                </div>
+                                <div class="md:w-1/2">
+                                    <img src="https://images.unsplash.com/photo-1543373014-cfe4f4bc1cdf?q=80&w=1948&auto=format&fit=crop" alt="Taman Halal" class="rounded-xl shadow-lg w-full h-auto object-cover">
+                                </div>
+                            </div>
+                        </div>
+                    </section>
 
-<div class="container">
-    <h1>Daftar Fasilitas</h1>
-
-    <div class="row">
-        @foreach ($fasilitas as $u)
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    @if ($u->foto)
-                        <img src="{{ asset('storage/' . $u->foto) }}" class="card-img-top" alt="{{ $u->nama }}">
-                    @endif
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $u->nama_fasilitas }}</h5>
-                        <p class="card-text">{{ Str::limit($u->deskripsi, 100) }}</p>
-                        <a href="{{ route('fasilitas.show', $u->id) }}" class="btn btn-primary">Lihat Detail</a>
-                    </div>
+                    <section>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <div class="bg-white rounded-2xl custom-shadow overflow-hidden flex flex-col transition-transform duration-300 custom-shadow-hover hover:-translate-y-1.5">
+                                <img src="https://images.unsplash.com/photo-1588925434162-49cc2622f778?q=80&w=1974&auto=format&fit=crop" alt="Masjid" class="w-full h-48 object-cover">
+                                <div class="p-6 flex-grow flex flex-col">
+                                    <h3 class="text-xl font-bold text-jabal-green mb-4 text-center">Masjid</h3>
+                                    <a href="#" class="mt-auto block w-full bg-white border border-gray-200 text-center text-jabal-green font-semibold px-6 py-2.5 rounded-full hover:bg-jabal-green hover:text-white transition-colors">Lihat Fasilitas</a>
+                                </div>
+                            </div>
+                            <div class="bg-white rounded-2xl custom-shadow overflow-hidden flex flex-col transition-transform duration-300 custom-shadow-hover hover:-translate-y-1.5">
+                                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=1981&auto=format&fit=crop" alt="Resto Halal" class="w-full h-48 object-cover">
+                                <div class="p-6 flex-grow flex flex-col">
+                                    <h3 class="text-xl font-bold text-jabal-green mb-4 text-center">Resto Halal</h3>
+                                    <a href="#" class="mt-auto block w-full bg-white border border-gray-200 text-center text-jabal-green font-semibold px-6 py-2.5 rounded-full hover:bg-jabal-green hover:text-white transition-colors">Lihat Fasilitas</a>
+                                </div>
+                            </div>
+                            <div class="bg-white rounded-2xl custom-shadow overflow-hidden flex flex-col transition-transform duration-300 custom-shadow-hover hover:-translate-y-1.5">
+                                <div class="w-full h-48 bg-gray-200"></div>
+                                <div class="p-6 flex-grow flex flex-col">
+                                    <h3 class="text-xl font-bold text-jabal-green mb-4 text-center">Data</h3>
+                                    <a href="#" class="mt-auto block w-full bg-white border border-gray-200 text-center text-jabal-green font-semibold px-6 py-2.5 rounded-full hover:bg-jabal-green hover:text-white transition-colors">Lihat Fasilitas</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
-            </div>
-        @endforeach
-    </div>
 
-    {{ $fasilitas->links() }}
-</div>
 @endsection
