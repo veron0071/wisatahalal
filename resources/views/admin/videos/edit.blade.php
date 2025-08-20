@@ -1,7 +1,16 @@
-@extends('layouts.app')
-
+@extends('layouts.admin')
+@section('title', 'Edit Video')
 @section('content')
-<div class="container">
-    <h1>Edit Videos</h1>
-</div>
+    <form method="POST" action="{{ route('admin.videos.update', $video->id) }}">
+        @csrf
+        @method('PUT')
+        <div class="bg-white shadow sm:rounded-lg">
+            <div class="px-4 py-5 sm:p-6">
+                <h3 class="text-lg font-medium leading-6 text-gray-900">Formulir Edit Video</h3>
+                <div class="mt-6">
+                    @include('admin.videos.partials.form', ['video' => $video])
+                </div>
+            </div>
+        </div>
+    </form>
 @endsection

@@ -1,14 +1,15 @@
 @extends('layouts.admin')
-
-@section('title', 'Data Fasilitas')
+@section('title', 'Tambah Data Fasilitas')
 @section('content')
-
-<div class="container">
-    <h1>Tambah Fasilitas</h1>
-    <form action="{{ route('admin.fasilitas.store') }}" method="POST" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('admin.fasilitas.store') }}" enctype="multipart/form-data">
         @csrf
-        @include('admin.fasilitas.partials.form')
+        <div class="bg-white shadow sm:rounded-lg">
+            <div class="px-4 py-5 sm:p-6">
+                <h3 class="text-lg font-medium leading-6 text-gray-900">Formulir Tambah Fasilitas</h3>
+                <div class="mt-6">
+                    @include('admin.fasilitas.partials.form')
+                </div>
+            </div>
+        </div>
     </form>
-</div>
 @endsection
-

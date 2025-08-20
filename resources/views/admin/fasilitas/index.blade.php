@@ -1,68 +1,105 @@
 @extends('layouts.admin')
-
-@section('title', 'Data fasilitas')
-
+@section('title', 'Data Fasilitas')
 @section('content')
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <h2>Data fasilitas</h2>
-    <a href="{{ route('admin.fasilitas.create') }}" class="btn btn-primary">
-        <i class="bi bi-plus-lg"></i> Tambah fasilitas
-    </a>
-</div>
+    <div class="px-4 sm:px-6 lg:px-8">
+        <div class="sm:flex sm:items-center">
+            <div class="sm:flex-auto">
+                <h1 class="text-xl font-semibold text-gray-900">Data Fasilitas</h1>
+                <p class="mt-2 text-sm text-gray-700">Daftar semua fasilitas yang terdata di sistem.</p>
+            </div>
+            <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+                <a href="{{ route('admin.fasilitas.create') }}"
+                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
+                    Tambah Fasilitas
+                </a>
+            </div>
+        </div>
 
-@if (session('success'))
-    <div class="alert alert-success">{{ session('success') }}</div>
-@endif
+        @if (session('success'))
+            <div class="mt-4 rounded-md bg-green-50 p-4">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <svg class="h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                            fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.06 0l4-5.5z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm font-medium text-green-800">{{ session('success') }}</p>
+                    </div>
+                </div>
+            </div>
+        @endif
 
-<table class="table table-bordered table-striped">
-    <thead class="table-dark">
-        <tr>
-            <th>#</th>
-            <th>Nama</th>
-            <th>Lokasi</th>
-            <th>Deskripsi</th>
-            <th>Foto</th>
-            
-            <th>Aksi</th>
-        </tr>
-    </thead>
-    <tbody>
-        @forelse ($fasilitas as $item)
-            <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ $item->nama_fasilitas }}</td>
-                <td>{{ $item->deskripsi}}</td>
-                <td>{{ $item->lokasi }}</td>
-                <td>
-                    @if($item->foto)
-                        <img src="{{ asset('storage/' . $item->foto) }}" alt="{{ $item->nama }}" width="80">
-                    @else
-                        <span class="text-muted">Tidak ada foto</span>
-                    @endif
-                </td>
-                <td>
-                 
-                    <a href="{{ route('admin.fasilitas.edit', $item->id) }}" class="btn btn-warning btn-sm">
-                        <i class="bi bi-pencil"></i> Edit
-                    </a>
-                    <form action="{{ route('admin.fasilitas.destroy', $item->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger btn-sm">
-                            <i class="bi bi-trash"></i> Hapus
-                        </button>
-                    </form>
-                </td>
-            </tr>
-        @empty
-            <tr>
-                <td colspan="5" class="text-center">Belum ada data fasilitas.</td>
-            </tr>
-        @endforelse
-    </tbody>
-</table>
-
-<div class="d-flex justify-content-center">
-    {{ $fasilitas->links() }}
-</div>
+        <div class="mt-8 flex flex-col">
+            <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                    <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                        <table class="min-w-full divide-y divide-gray-300">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col"
+                                        class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Nama
+                                    </th>
+                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                        Deskripsi</th>
+                                    <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6"><span
+                                            class="sr-only">Aksi</span></th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 bg-white">
+                                @forelse ($fasilitas as $item)
+                                    <tr>
+                                        <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
+                                            <div class="flex items-center">
+                                                <div class="h-10 w-10 flex-shrink-0">
+                                                    <img class="h-10 w-10 rounded-full object-cover"
+                                                        src="{{ $item->foto ? asset('storage/' . $item->foto) : 'https://ui-avatars.com/api/?name=' . urlencode($item->nama_fasilitas) . '&color=7F9CF5&background=EBF4FF' }}"
+                                                        alt="">
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="font-medium text-gray-900">{{ $item->nama_fasilitas }}</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                            <div class="text-gray-900">{{ Str::limit($item->deskripsi, 50) }}</div>
+                                        </td>
+                                        <td
+                                            class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                            <div class="flex justify-end gap-x-4">
+                                                <a href="{{ route('admin.fasilitas.show', $item->id) }}"
+                                                    class="text-gray-500 hover:text-indigo-600">Detail</a>
+                                                <a href="{{ route('admin.fasilitas.edit', $item->id) }}"
+                                                    class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                                <form action="{{ route('admin.fasilitas.destroy', $item->id) }}"
+                                                    method="POST"
+                                                    onsubmit="return confirm('Yakin ingin menghapus data ini?')">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                        class="text-red-600 hover:text-red-900">Hapus</button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="3" class="px-3 py-4 text-center text-sm text-gray-500">
+                                            Belum ada data fasilitas.
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-4">
+                        {{ $fasilitas->links() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

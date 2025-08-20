@@ -1,15 +1,16 @@
 @extends('layouts.admin')
-
-@section('title', 'Edit Fasilitas')
+@section('title', 'Edit Data Fasilitas')
 @section('content')
-<div class="container">
-    <h1>Edit Fasilitas</h1>
-    <form action="{{ route('admin.fasilitas.update', $fasilitas) }}" method="POST" enctype="multipart/form-data">
-
-
+    <form method="POST" action="{{ route('admin.fasilitas.update', $fasilitas->id) }}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        @include('admin.fasilitas.partials.form')
+        <div class="bg-white shadow sm:rounded-lg">
+            <div class="px-4 py-5 sm:p-6">
+                <h3 class="text-lg font-medium leading-6 text-gray-900">Formulir Edit Fasilitas</h3>
+                <div class="mt-6">
+                    @include('admin.fasilitas.partials.form', ['fasilitas' => $fasilitas])
+                </div>
+            </div>
+        </div>
     </form>
-</div>
 @endsection
