@@ -15,45 +15,46 @@ class PostSeeder extends Seeder
      */
     public function run(): void
     {
+        // 1. Hapus data dan file lama
         Post::query()->delete();
         Storage::disk('public')->deleteDirectory('posts');
 
+        // 2. Tentukan path
         $sourcePath = database_path('seeders/dummy_images/posts');
         $destinationPath = 'posts';
         Storage::disk('public')->makeDirectory($destinationPath);
 
+        // 3. Data spesifik untuk 11 post
         $posts = [
-            [
-                'judul' => 'Pembukaan Program Sertifikasi Halal Gratis untuk UMKM',
-                'isi' => 'Dalam rangka mendukung ekosistem halal, kami membuka program sertifikasi halal gratis bagi 100 UMKM terpilih. Program ini bertujuan untuk meningkatkan daya saing produk lokal di pasar nasional dan global. Pendaftaran dibuka mulai hari ini hingga akhir bulan.',
-                'kategori' => 'Pengumuman',
-                'foto_sumber' => 'pengumuman1.jpg'
-            ],
-            [
-                'judul' => 'Kajian Fiqih Muamalah Kontemporer Bersama Ustadz Ahli',
-                'isi' => 'Saksikan kajian rutin bulanan yang akan membahas seluk-beluk fiqih muamalah di era digital. Tema bulan ini adalah "Hukum Jual Beli Online dan Dropshipping". Acara akan diselenggarakan secara hybrid, online dan offline di aula utama.',
-                'kategori' => 'Berita',
-                'foto_sumber' => 'berita1.jpg'
-            ],
-            [
-                'judul' => 'Kolaborasi Baru dengan Lembaga Keuangan Syariah untuk Permodalan UMKM',
-                'isi' => 'Wisata Halal Jabal Nur menjalin kerjasama strategis dengan beberapa Bank Syariah untuk memfasilitasi akses permodalan bagi UMKM binaan. Inisiatif ini diharapkan dapat mendorong pertumbuhan usaha dan menciptakan kemandirian ekonomi umat.',
-                'kategori' => 'Berita',
-                'foto_sumber' => 'berita2.jpg'
-            ],
+            ['judul' => 'Pengumuman Penting: Jadwal Kajian Bulanan', 'kategori' => 'Pengumuman'],
+            ['judul' => 'Berita Kolaborasi dengan Universitas Lokal', 'kategori' => 'Berita'],
+            ['judul' => 'Pengumuman: Program Beasiswa Santri Berprestasi', 'kategori' => 'Pengumuman'],
+            ['judul' => 'Berita: Peluncuran Produk UMKM Halal Baru', 'kategori' => 'Berita'],
+            ['judul' => 'Pengumuman Rapat Anggota Tahunan', 'kategori' => 'Pengumuman'],
+            ['judul' => 'Berita Seputar Pengembangan Wisata Religi', 'kategori' => 'Berita'],
+            ['judul' => 'Pengumuman Libur Hari Raya', 'kategori' => 'Pengumuman'],
+            ['judul' => 'Berita: Workshop Digital Marketing untuk UMKM', 'kategori' => 'Berita'],
+            ['judul' => 'Pengumuman Pendaftaran Relawan Baru', 'kategori' => 'Pengumuman'],
+            ['judul' => 'Berita Kunjungan dari Tokoh Masyarakat', 'kategori' => 'Berita'],
+            ['judul' => 'Pengumuman Hasil Lomba Esai Islami', 'kategori' => 'Pengumuman'],
         ];
 
-        foreach ($posts as $postData) {
-            $sourceFile = $sourcePath . '/' . $postData['foto_sumber'];
-            $destinationFile = $destinationPath . '/' . $postData['foto_sumber'];
+        // 4. Proses penyalinan file dan pembuatan data
+        foreach ($posts as $index => $postData) {
+            $sourceFile = $sourcePath . '/seeder.png';
+
+            // Membuat nama file tujuan yang unik agar tidak saling menimpa
+            $uniqueName = 'seeder-' . ($index + 1) . '-' . uniqid() . '.png';
+            $destinationFile = $destinationPath . '/' . $uniqueName;
 
             if (File::exists($sourceFile)) {
                 File::copy($sourceFile, storage_path('app/public/' . $destinationFile));
             }
 
+            // Buat record di database
             Post::create([
                 'judul' => $postData['judul'],
-                'isi' => $postData['isi'],
+                'isi' => 'Ini adalah isi konten atau deskripsi default untuk post ini. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                 'kategori' => $postData['kategori'],
                 'foto' => $destinationFile
             ]);

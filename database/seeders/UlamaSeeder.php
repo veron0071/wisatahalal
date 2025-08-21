@@ -6,6 +6,7 @@ use App\Models\Ulama;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class UlamaSeeder extends Seeder
 {
@@ -14,43 +15,47 @@ class UlamaSeeder extends Seeder
      */
     public function run(): void
     {
+        // 1. Hapus data dan file lama
         Ulama::query()->delete();
         Storage::disk('public')->deleteDirectory('ulama');
 
+        // 2. Tentukan path
         $sourcePath = database_path('seeders/dummy_images/ulama');
         $destinationPath = 'ulama';
-
         Storage::disk('public')->makeDirectory($destinationPath);
 
+        // 3. Data nama untuk 11 ulama
         $ulamas = [
-            [
-                'nama' => 'KH. Ahmad Basyir',
-                'sejarah' => 'Seorang ulama kharismatik pendiri Pondok Pesantren di Kendal. Beliau dikenal karena kedalaman ilmunya dalam bidang Fiqih dan Tasawuf. Banyak santrinya yang kini menjadi tokoh masyarakat.',
-                'foto_sumber' => 'ulama1.jepg' // Nama file di folder sumber
-            ],
-            [
-                'nama' => 'Nyai Hj. Siti Fatimah',
-                'sejarah' => 'Tokoh ulama perempuan yang menjadi pelopor pendidikan bagi santriwati. Beliau fokus pada pengajaran Al-Qur\'an dan pemberdayaan perempuan di lingkungan pesantren.',
-                'foto_sumber' => 'ulama2.jepg' // Nama file di folder sumber
-            ],
-            [
-                'nama' => 'Gus Abdullah Faqih',
-                'sejarah' => 'Ulama muda yang populer di kalangan milenial. Dakwahnya ringan, mudah diterima, dan sering menggunakan platform digital untuk menyebarkan ilmu agama Islam yang damai dan toleran.',
-                'foto_sumber' => 'ulama3.jepg' // Nama file di folder sumber
-            ],
+            ['nama' => 'KH. Ahmad Basyir'],
+            ['nama' => 'Nyai Hj. Siti Fatimah'],
+            ['nama' => 'Gus Abdullah Faqih'],
+            ['nama' => 'KH. Muhammadun'],
+            ['nama' => 'Prof. Dr. H. Abdul Ghofur'],
+            ['nama' => 'Dr. Nur Fatoni, MAg'],
+            ['nama' => 'KH. M. Nasyih Syarifuddin'],
+            ['nama' => 'Dr. KH Ahmad Tantowi, MSi'],
+            ['nama' => 'KH. Basyar Rohman, SHI, MSi'],
+            ['nama' => 'Ubaidul Musthofa, SHI, MSi'],
+            ['nama' => 'KH. Ahmad Yusro Mubarok'],
         ];
 
-        foreach ($ulamas as $ulamaData) {
-            $sourceFile = $sourcePath . '/' . $ulamaData['foto_sumber'];
-            $destinationFile = $destinationPath . '/' . $ulamaData['foto_sumber'];
+        // 4. Proses penyalinan file dan pembuatan data
+        foreach ($ulamas as $index => $ulamaData) {
+            $sourceFile = $sourcePath . '/seeder.png';
 
+            // Membuat nama file tujuan yang unik
+            $uniqueName = 'seeder-' . ($index + 1) . '-' . uniqid() . '.png';
+            $destinationFile = $destinationPath . '/' . $uniqueName;
+
+            // Salin file sumber ke public storage jika ada
             if (File::exists($sourceFile)) {
                 File::copy($sourceFile, storage_path('app/public/' . $destinationFile));
             }
 
+            // Buat record di database
             Ulama::create([
                 'nama' => $ulamaData['nama'],
-                'sejarah' => $ulamaData['sejarah'],
+                'sejarah' => 'Ini adalah deskripsi atau sejarah singkat mengenai tokoh ulama ini. Informasi lebih lanjut akan ditambahkan kemudian oleh admin.',
                 'foto' => $destinationFile
             ]);
         }
