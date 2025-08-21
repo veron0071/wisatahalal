@@ -43,6 +43,11 @@ Route::get('/fasilitas', [WisataController::class, 'fasilitasIndex'])->name('fas
 Route::get('/fasilitas/{fasilitas}', [WisataController::class, 'fasilitasShow'])->name('fasilitas.show');
 Route::get('/umkm', [WisataController::class, 'umkmIndex'])->name('umkm.index');
 
+// Route::get('/ceramah', [WisataController::class, 'ceramahIndex'])->name('ceramahs.index');
+// Route::get('/ceramah/{ceramah}', [WisataController::class, 'ceramahShow'])->name('ceramahs.show');
+// Route::get('/ziarah', [WisataController::class, 'ziarahIndex'])->name('ziarahs.index');
+// Route::get('/ziarah/{ziarah}', [WisataController::class, 'ziarahShow'])->name('ziarahs.show');
+
 /*
 |--------------------------------------------------------------------------
 | Rute Autentikasi dan Dashboard Pengguna
