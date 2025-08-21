@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Admin Panel')</title>
+    <link rel="icon" type="image/png" href="{{ asset('admin_wisata.png') }}">
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -27,8 +28,8 @@
 
         <aside
             class="fixed inset-y-0 left-0 z-30 w-64 bg-gray-800 text-white transform transition-transform duration-300 ease-in-out md:relative md:translate-x-0"
-            :class="{ 'translate-x-0': sidebarOpen, '-translate-x-full': !sidebarOpen }" @click.away="sidebarOpen = false"
-            x-cloak>
+            :class="{ 'translate-x-0': sidebarOpen, '-translate-x-full': !sidebarOpen }"
+            @click.away="sidebarOpen = false" x-cloak>
             <div class="h-16 flex items-center justify-center text-xl font-bold border-b border-gray-700">
                 <a href="{{ route('admin.dashboard') }}" class="text-white hover:text-gray-300 transition-colors">
                     Admin Panel
