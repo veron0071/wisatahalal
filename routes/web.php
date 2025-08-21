@@ -43,6 +43,13 @@ Route::get('/fasilitas', [WisataController::class, 'fasilitasIndex'])->name('fas
 Route::get('/fasilitas/{fasilitas}', [WisataController::class, 'fasilitasShow'])->name('fasilitas.show');
 Route::get('/umkm', [WisataController::class, 'umkmIndex'])->name('umkm.index');
 Route::get('/program', [WisataController::class, 'programIndex'])->name('program.index');
+Route::get('/ceramah', [WisataController::class, 'ceramahIndex'])->name('ceramah.index');
+Route::get('/lokasiziarah', [WisataController::class, 'lokasiziarahIndex'])->name('lokasiziarah.index');
+Route::get('/video', [WisataController::class, 'videoIndex'])->name('video.index');
+Route::get('/paketwisata', [WisataController::class, 'paketWisataIndex'])->name('paketwisata.index');
+Route::get('/sertifikasi', [WisataController::class, 'sertifikasiIndex'])->name('sertifikasi.index');
+Route::get('/artikel', [WisataController::class, 'artikelIndex'])->name('artikel.index');
+Route::get('/pengumuman', [WisataController::class, 'pengumumanIndex'])->name('pengumuman.index');
 
 /*
 |--------------------------------------------------------------------------
@@ -89,6 +96,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('artikels', ArtikelController::class);
     Route::resource('kajians', KajianController::class);
     Route::resource('potensi-kerjasama', PotensiKerjasamaController::class);
+    Route::resource('pengumumans', PengumumanController::class);
+
 });
 
 require __DIR__.'/auth.php';

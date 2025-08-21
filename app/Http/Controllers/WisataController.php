@@ -194,6 +194,18 @@ class WisataController extends Controller
         return view('stakeholder.show', compact('stakeholder'));
     }
 
+    // =================== PENGUMUMAN =================== tambah pengumuman putri
+    public function pengumumanIndex()
+    {
+        $pengumumans = Pengumuman::latest()->paginate(self::PAGINATION_COUNT);
+        return view('pengumuman.index', compact('pengumumans'));
+    }
+
+    public function pengumumanShow(Pengumuman $pengumuman)
+    {
+        return view('pengumuman.show', compact('pengumuman'));
+    }
+
     // =================== VIDEO ===================
     public function videoIndex()
     {
