@@ -104,22 +104,18 @@
             <header
                 class="bg-white shadow-sm flex items-center justify-between md:justify-end px-4 sm:px-6 lg:px-8 py-4">
                 <button @click.stop="sidebarOpen = !sidebarOpen" class="md:hidden text-gray-500 focus:outline-none">
-                    {{-- ... svg icon ... --}}
+                    <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                    </svg>
                 </button>
 
-                <div class="flex items-center gap-x-4">
-                    <a href="{{ route('admin.profile.edit') }}"
-                        class="text-sm font-medium text-gray-500 hover:text-gray-700">
-                        <i class="bi bi-person-circle mr-1"></i> Edit Profil
-                    </a>
-                    <span class="text-gray-300">|</span>
-                    <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button type="submit" class="text-sm font-medium text-gray-500 hover:text-gray-700">
-                            <i class="bi bi-box-arrow-right mr-1"></i> Logout
-                        </button>
-                    </form>
-                </div>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="text-sm font-medium text-gray-500 hover:text-gray-700">
+                        <i class="bi bi-box-arrow-right mr-1"></i> Logout
+                    </button>
+                </form>
             </header>
 
             <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
