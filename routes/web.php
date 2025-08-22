@@ -51,7 +51,7 @@ Route::get('/pengumuman', [WisataController::class, 'pengumumanIndex'])->name('p
 Route::get('/api/pengumuman', [WisataController::class, 'loadMorePengumuman'])->name('api.pengumuman.loadmore');
 
 Route::get('/ceramah', [WisataController::class, 'ceramahIndex'])->name('ceramah.index');
-Route::get('/lokasiziarah', [WisataController::class, 'lokasiziarahIndex'])->name('lokasiziarah.index');
+Route::get('/lokasiziarah', [WisataController::class, 'ziarahsIndex'])->name('ziarahs.index');
 Route::get('/video', [WisataController::class, 'videoIndex'])->name('video.index');
 Route::get('/paketwisata', [WisataController::class, 'paketWisataIndex'])->name('paketwisata.index');
 Route::get('/sertifikasi', [WisataController::class, 'sertifikasiIndex'])->name('sertifikasi.index');

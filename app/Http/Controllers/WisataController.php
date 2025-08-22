@@ -162,16 +162,16 @@ class WisataController extends Controller
     }
 
     // =================== ZIARAH ===================
-    public function ziarahIndex()
+    public function ziarahsIndex()
     {
         $ziarahs = Ziarah::latest()->paginate(self::PAGINATION_COUNT);
-        return view('ziarah.index', compact('ziarahs'));
+        return view('ziarahs.index', compact('ziarahs'));
     }
 
-    public function ziarahShow(Ziarah $ziarah)
-    {
-        return view('ziarah.show', compact('ziarah'));
-    }
+    // public function ziarahShow(Ziarah $ziarah)
+    // {
+    //     return view('ziarah.show', compact('ziarah'));
+    // }
 
     // =================== MANUSKRIP ===================
     public function manuskripIndex()
