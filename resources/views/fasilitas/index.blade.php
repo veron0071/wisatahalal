@@ -5,9 +5,9 @@
 
     @if ($fasilitass->isNotEmpty())
         <div x-data="pageData()" class="container mx-auto px-6 md:px-12 py-12">
-            <section>
-                <h1 class="text-4xl font-bold text-jabal-green">Fasilitas</h1>
-                <hr class="mt-4 mb-12 border-jabal-green border-t-2">
+            <section class="mb-12">
+                <h1 class="text-4xl font-bold text-jabal-green text-center">Fasilitas</h1>
+                <p class="text-center text-gray-500 mt-2">Fasilitas Yaang Ada di Kawasan Jabal Nur</p>
             </section>
 
             <section class="mb-16">

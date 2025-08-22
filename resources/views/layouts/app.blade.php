@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,81 +13,67 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        'jabal-green': '#255F38',
-                        'jabal-light': '#1F7D53',
-                        'jabal-putih': '#FFFFFF'
-                    },
-                    fontFamily: {
-                        sans: ['Poppins', 'sans-serif']
-                    },
-                    borderRadius: {
-                        'xl': '1rem',
-                        '2xl': '1.25rem'
-                    }
+                    colors: { 'jabal-green': '#255F38', 'jabal-light': '#1F7D53', 'jabal-putih': '#FFFFFF' },
+                    fontFamily: { sans: ['Poppins', 'sans-serif'] },
+                    borderRadius: { 'xl': '1rem', '2xl': '1.25rem' }
                 }
             }
         }
     </script>
     <style>
-        html {
-            scroll-behavior: smooth;
-        }
-
-        .custom-shadow {
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
-        }
-
-        .custom-shadow-hover:hover {
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-        }
+        html { scroll-behavior: smooth; }
+        .custom-shadow { box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07); }
+        .custom-shadow-hover:hover { box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1); }
     </style>
 </head>
 
 <body class="bg-slate-50">
 
     <div class="relative min-h-screen md:flex">
+        
         <aside id="sidebar"
             class="fixed top-0 left-0 z-50 w-64 h-screen bg-white border-r p-6 transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
             <a href="{{ route('home') }}" class="text-xl font-bold text-jabal-green">Wisata Jabal Nur</a>
-            <nav class="mt-8">
+            <nav class="mt-8 flex-grow overflow-y-auto">
                 <ul class="space-y-2">
-                    <li><a href="{{ route('ulama.index') }}"
-                            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span
-                                class="ml-3">Sejarah Ulama</span></a></li>
-                    <li><a href="{{ route('fasilitas.index') }}"
-                            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span
-                                class="ml-3">Fasilitas</span></a></li>
-                    <li><a href="{{ route('umkm.index') }}"
-                            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span
-                                class="ml-3">UMKM Halal</span></a></li>
-                    <li><a href="{{ route('ceramah.index') }}"
-                            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span
-                                class="ml-3">Ceramah & Kajian</span></a></li>
-                    <li><a href="{{ route('lokasiziarah.index') }}"
-                            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span
-                                class="ml-3">Lokasi Ziarah</span></a></li>
-                    <li><a href="{{ route('video.index') }}"
-                            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span
-                                class="ml-3">Video</span></a></li>
-                    <li><a href="{{ route('paketwisata.index') }}"
-                            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span
-                                class="ml-3">Paket Wisata</span></a></li>
-                    {{-- <li><a href="{{ route('sertifikasi.index') }}"
-                            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span
-                                class="ml-3">Sertifikasi Halal</span></a></li>
-                    <li> --}}
-                    <hr class="my-2 border-gray-200">
+                    
+                    <li x-data="{ open: false }">
+                        <button @click="open = !open" class="flex items-center justify-between w-full p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100">
+                            {{-- TAMBAHKAN ml-3 DI SINI --}}
+                            <span class="ml-3">Program MES Kendal</span>
+                            <svg class="w-4 h-4 transition-transform duration-200" :class="{'rotate-180': open}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <ul x-show="open" x-transition class="pl-8 mt-2 space-y-2">
+                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Profil MES Kendal</a></li>
+                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Visi Misi</a></li>
+                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Struktur Organisasi</a></li>
+                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Roadmap Organisasi</a></li>
+                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Sebaran Potensi Kerjasama</a></li>
+                        </ul>
                     </li>
-                    <li><a href="{{ route('posts.berita') }}"
-                            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span
-                                class="ml-3">Berita</span></a></li>
-                    <li><a href="{{ route('posts.pengumuman') }}"
-                            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span
-                                class="ml-3">Pengumuman</span></a></li>
-                    <li><a href="{{ route('program.index') }}"
-                            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span
-                                class="ml-3">Program Kerja</span></a></li>
+
+                    <li x-data="{ open: false }">
+                        <button @click="open = !open" class="flex items-center justify-between w-full p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100">
+                            {{-- TAMBAHKAN ml-3 DI SINI JUGA --}}
+                            <span class="ml-3">Program Kerja</span>
+                            <svg class="w-4 h-4 transition-transform duration-200" :class="{'rotate-180': open}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <ul x-show="open" x-transition class="pl-8 mt-2 space-y-2">
+                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Pengurus Harian</a></li>
+                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Bidang Ziswaf dan CSR</a></li>
+                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Bidang Penelitian dan Pengembangan Ekonomi Syariah</a></li>
+                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Bidang Bisnis, Pariwisata, dan Ekonomi Kreatif</a></li>
+                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Bidang Multimedia dan Kominfo</a></li>
+                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Bidang Sinergi Antar Lembaga Dan Komunitas</a></li>
+                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Bidang Kaderisasi</a></li>
+                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Bidang Pendidikan dan Pelatihan</a></li>
+                        </ul>
+                    </li>
+
                 </ul>
             </nav>
         </aside>
@@ -128,8 +113,7 @@
             </main>
 
             <footer class="text-center py-8 bg-slate-50 border-t">
-                <p class="text-gray-500 text-sm">&copy; {{ date('Y') }} Wisata Halal Jabal Nur. Dikembangkan oleh
-                    PD
+                <p class="text-gray-500 text-sm">&copy; {{ date('Y') }} Wisata Halal Jabal Nur. Dikembangkan oleh PD
                     MES Kendal.</p>
             </footer>
         </div>
@@ -146,28 +130,21 @@
 
             function toggleSidebar() {
                 const isSidebarOpen = !sidebar.classList.contains('-translate-x-full');
-
                 sidebar.classList.toggle('-translate-x-full');
                 iconOpen.classList.toggle('hidden');
                 iconClose.classList.toggle('hidden');
-
-                // Logika untuk mobile (menggunakan overlay) vs desktop (mendorong konten)
                 if (window.innerWidth < 768) {
                     overlay.classList.toggle('hidden');
                 } else {
                     mainContent.classList.toggle('ml-64', !isSidebarOpen);
                 }
             }
-
-            // Cek kondisi awal saat halaman dimuat untuk desktop
             if (window.innerWidth >= 768) {
-                // Biarkan sidebar tertutup saat pertama kali dimuat
                 sidebar.classList.add('-translate-x-full');
                 mainContent.classList.remove('ml-64');
                 iconOpen.classList.remove('hidden');
                 iconClose.classList.add('hidden');
             }
-
             toggleBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 toggleSidebar();
@@ -176,5 +153,4 @@
         });
     </script>
 </body>
-
 </html>
