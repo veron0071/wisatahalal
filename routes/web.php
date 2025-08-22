@@ -38,6 +38,8 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
+Route::view('/tentangkami/profilmes', 'TentangKami.ProfilMES.index')->name('tentang.profil');
+
 Route::get('/ulama', [WisataController::class, 'ulamaIndex'])->name('ulama.index');
 Route::get('/ulama/{ulama}', [WisataController::class, 'ulamaShow'])->name('ulama.show');
 Route::get('/fasilitas', [WisataController::class, 'fasilitasIndex'])->name('fasilitas.index');
@@ -51,10 +53,12 @@ Route::get('/pengumuman', [WisataController::class, 'pengumumanIndex'])->name('p
 Route::get('/api/pengumuman', [WisataController::class, 'loadMorePengumuman'])->name('api.pengumuman.loadmore');
 
 Route::get('/ceramah', [WisataController::class, 'ceramahIndex'])->name('ceramah.index');
-Route::get('/lokasiziarah', [WisataController::class, 'lokasiziarahIndex'])->name('lokasiziarah.index');
+Route::get('/lokasiziarah', [WisataController::class, 'ziarahsIndex'])->name('ziarahs.index');
 Route::get('/video', [WisataController::class, 'videoIndex'])->name('video.index');
 Route::get('/paketwisata', [WisataController::class, 'paketWisataIndex'])->name('paketwisata.index');
 Route::get('/sertifikasi', [WisataController::class, 'sertifikasiIndex'])->name('sertifikasi.index');
+
+
 
 // Route::get('/ceramah', [WisataController::class, 'ceramahIndex'])->name('ceramahs.index');
 // Route::get('/ceramah/{ceramah}', [WisataController::class, 'ceramahShow'])->name('ceramahs.show');

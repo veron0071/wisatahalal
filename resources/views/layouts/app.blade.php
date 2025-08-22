@@ -39,14 +39,14 @@
                     
                     <li x-data="{ open: false }">
                         <button @click="open = !open" class="flex items-center justify-between w-full p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100">
-                            {{-- TAMBAHKAN ml-3 DI SINI --}}
-                            <span class="ml-3">Program MES Kendal</span>
+                            {{-- PERUBAHAN DI SINI --}}
+                            <span class="ml-3 flex-grow text-left">Program MES Kendal</span>
                             <svg class="w-4 h-4 transition-transform duration-200" :class="{'rotate-180': open}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </button>
                         <ul x-show="open" x-transition class="pl-8 mt-2 space-y-2">
-                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Profil MES Kendal</a></li>
+                            <li><a href="{{ route('tentang.profil') }}" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Profil MES Kendal</a></li>
                             <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Visi Misi</a></li>
                             <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Struktur Organisasi</a></li>
                             <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Roadmap Organisasi</a></li>
@@ -56,8 +56,8 @@
 
                     <li x-data="{ open: false }">
                         <button @click="open = !open" class="flex items-center justify-between w-full p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100">
-                            {{-- TAMBAHKAN ml-3 DI SINI JUGA --}}
-                            <span class="ml-3">Program Kerja</span>
+                            {{-- PERUBAHAN DI SINI --}}
+                            <span class="ml-3 flex-grow text-left">Program Kerja</span>
                             <svg class="w-4 h-4 transition-transform duration-200" :class="{'rotate-180': open}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
