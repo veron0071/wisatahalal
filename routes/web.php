@@ -39,6 +39,10 @@ Route::get('/', function () {
 })->name('home');
 
 Route::view('/tentangkami/profilmes', 'TentangKami.ProfilMES.index')->name('tentang.profil');
+Route::view('/tentangkami/visimisi', 'TentangKami.VisiMisi.index')->name('tentang.visimisi');
+Route::view('/tentangkami/strukturorganisasi', 'TentangKami.StrukturOrganisasi.index')->name('tentang.struktur');
+Route::view('/tentangkami/roadmaporganisasi', 'TentangKami.RoadmapOrganisasi.index')->name('tentang.roadmap');
+Route::view('/tentangkami/sebaranpotensi', 'TentangKami.SebaranPotensi.index')->name('tentang.potensi');
 
 Route::get('/ulama', [WisataController::class, 'ulamaIndex'])->name('ulama.index');
 Route::get('/ulama/{ulama}', [WisataController::class, 'ulamaShow'])->name('ulama.show');
