@@ -17,17 +17,78 @@ use App\Models\Artikel;
 use App\Models\Kajian;
 use App\Models\Stakeholder;
 use App\Models\Video;
+use App\Models\Post;
+use Illuminate\Http\Request;
 
 class WisataController extends Controller
 {
 
     private const PAGINATION_COUNT = 9;
 
+    // =================== POST  ===================
+    public function beritaIndex()
+    {
+        // $featuredPost = \App\Models\Post::where('kategori', 'Berita')->latest()->first();
+
+        // $posts = \App\Models\Post::where('kategori', 'Berita')
+        //     ->when($featuredPost, function ($query) use ($featuredPost) {
+        //         return $query->where('id', '!=', $featuredPost->id);
+        //     })
+        //     ->latest()
+        //     ->take(5)
+        //     ->get();
+
+        // return view('posts.berita', compact('featuredPost', 'posts'));
+        $posts = \App\Models\Post::where('kategori', 'Berita')->latest()->paginate(5);
+        return view('posts.berita', compact('posts'));
+    }
+    public function loadMoreBerita(Request $request)
+    {
+        $posts = \App\Models\Post::where('kategori', 'Berita')
+                ->latest()
+                ->paginate(5, ['*'], 'page', $request->query('page'));
+
+        return response()->json($posts);
+    }
+
+    public function pengumumanIndex()
+    {
+        $posts = \App\Models\Post::where('kategori', 'Pengumuman')->latest()->paginate(5);
+        return view('posts.pengumuman', compact('posts'));
+    }
+
+    public function loadMorePengumuman(Request $request)
+    {
+        $posts = \App\Models\Post::where('kategori', 'Pengumuman')
+                ->latest()
+                ->paginate(5, ['*'], 'page', $request->query('page'));
+
+        return response()->json($posts);
+    }
+
+
     // =================== ULAMA ===================
     public function ulamaIndex()
     {
-        $ulamas = Ulama::latest()->paginate(self::PAGINATION_COUNT);
-        return view('ulama.index', compact('ulamas'));
+        // $ulamas = Ulama::latest()->paginate(self::PAGINATION_COUNT);
+        // return view('ulama.index', compact('ulamas'));
+
+        // $ulamas = \App\Models\Ulama::latest()->paginate(10);
+        // return view('ulama.index', compact('ulamas'));
+
+        // Perbaikan: Ambil data ulama unggulan
+        // Buat tampilan interaktif mas hehe
+        $featuredUlama = \App\Models\Ulama::latest()->first();
+
+        $ulamas = \App\Models\Ulama::query()
+            ->when($featuredUlama, function ($query) use ($featuredUlama) {
+                // Pastikan data unggulan tidak muncul lagi di daftar bawah
+                return $query->where('id', '!=', $featuredUlama->id);
+            })
+            ->latest()
+            ->paginate(10);
+
+        return view('ulama.index', compact('featuredUlama', 'ulamas'));
     }
 
     public function ulamaShow(Ulama $ulama)
@@ -39,8 +100,20 @@ class WisataController extends Controller
     public function fasilitasIndex()
     {
         // Perbaikan: $fasilitas -> $fasilitass
-        $fasilitass = Fasilitas::latest()->paginate(self::PAGINATION_COUNT);
-        return view('fasilitas.index', compact('fasilitass'));
+        // $fasilitass = Fasilitas::latest()->paginate(self::PAGINATION_COUNT);
+        // return view('fasilitas.index', compact('fasilitass'));
+
+        $featuredFasilitas = \App\Models\Fasilitas::latest()->first();
+
+        // Buat tampilan interaktif mas hehe
+        $fasilitass = \App\Models\Fasilitas::query()
+            ->when($featuredFasilitas, function ($query) use ($featuredFasilitas) {
+                return $query->where('id', '!=', $featuredFasilitas->id);
+            })
+            ->latest()
+            ->paginate(8);
+
+        return view('fasilitas.index', compact('featuredFasilitas', 'fasilitass'));
     }
 
     public function fasilitasShow(Fasilitas $fasilitas)
@@ -51,7 +124,11 @@ class WisataController extends Controller
     // =================== UMKM ===================
     public function umkmIndex()
     {
-        $umkms = Umkm::latest()->paginate(self::PAGINATION_COUNT);
+        // $umkms = Umkm::latest()->paginate(self::PAGINATION_COUNT);
+        // return view('umkm.index', compact('umkms'));
+
+        $umkms = \App\Models\Umkm::latest()->paginate(9);
+
         return view('umkm.index', compact('umkms'));
     }
 
