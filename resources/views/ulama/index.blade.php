@@ -3,29 +3,27 @@
 
 @section('content')
 
-    {{-- Pastikan ada data sebelum memulai komponen interaktif --}}
-    @if ($ulamas->isNotEmpty())
+    {{-- Hanya tampilkan jika ada data ulama --}}
+    @if ($featuredUlama)
 
-        {{-- 1. Inisialisasi 'memori' (state) dengan data ulama pertama menggunakan x-data --}}
-        <div x-data="{ featured: {{ $ulamas->first()->toJson() }} }" class="container mx-auto px-6 md:px-12 py-12">
+        {{-- 1. Inisialisasi 'memori' (state) Alpine.js dengan data ulama unggulan --}}
+        <div x-data="{ featured: {{ $featuredUlama->toJson() }} }" class="container mx-auto px-6 md:px-12 py-12">
             <section class="mb-12">
                 <h1 class="text-4xl font-bold text-jabal-green text-center">Sejarah Ulama</h1>
                 <p class="text-center text-gray-500 mt-2">Mengenal Tokoh-tokoh Berpengaruh di Kawasan Jabal Nur</p>
             </section>
 
-            {{-- 2. Bagian Unggulan ini sekarang menampilkan data dari 'memori' (featured) --}}
+            {{-- 2. Bagian ini sekarang menampilkan data dari 'memori' (featured) secara dinamis --}}
             <section
-                class="bg-white rounded-2xl custom-shadow p-8 md:p-12 flex flex-col md:flex-row-reverse items-center gap-8 md:gap-16 transition-opacity duration-500">
+                class="bg-white rounded-2xl custom-shadow p-8 md:p-12 flex flex-col md:flex-row-reverse items-center gap-8 md:gap-16">
                 <div class="md:w-3/5 text-gray-600">
                     <h2 class="text-3xl font-bold text-jabal-green mb-4" x-text="featured.nama"></h2>
-                    <div class="text-base leading-relaxed text-justify prose max-w-none"
-                        x-html="featured.sejarah ? featured.sejarah.replace(/\n/g, '<br>') : ''"></div>
+                    <p class="text-base leading-relaxed text-justify"
+                        x-html="featured.sejarah ? featured.sejarah.replace(/\n/g, '<br>') : ''"></p>
                 </div>
                 <div class="md:w-2/5 flex justify-center">
-                    <template x-if="featured.foto">
-                        <img :src="'/storage/' + featured.foto" :alt="featured.nama"
-                            class="rounded-lg shadow-lg object-cover w-full max-w-xs h-80">
-                    </template>
+                    <img :src="'/storage/' + featured.foto" :alt="featured.nama"
+                        class="rounded-lg shadow-lg object-cover w-full max-w-xs h-80 transition-all duration-300">
                 </div>
             </section>
 
@@ -35,10 +33,10 @@
                 <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-8">
 
                     @foreach ($ulamas as $ulama)
+                        {{-- Setiap kartu diberi perintah @click untuk mengubah 'memori' (featured) dengan datanya sendiri --}}
                         <div @click="featured = {{ $ulama->toJson() }}"
                             class="cursor-pointer block bg-white rounded-lg custom-shadow p-4 text-center transition-transform duration-300 custom-shadow-hover hover:-translate-y-1.5">
                             @if ($ulama->foto)
-                                {{-- PERBAIKAN DI BARIS DI BAWAH INI --}}
                                 <div style="background-image: url('{{ asset('storage/' . $ulama->foto) }}');"
                                     class="bg-cover bg-center h-40 rounded-md mb-4"></div>
                             @else

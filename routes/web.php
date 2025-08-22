@@ -9,6 +9,7 @@ use App\Http\Controllers\WisataController;
 use App\Http\Controllers\ProfileController;
 
 // Controllers for Admin Panel
+use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\UlamaController;
@@ -44,6 +45,17 @@ Route::get('/fasilitas/{fasilitas}', [WisataController::class, 'fasilitasShow'])
 Route::get('/umkm', [WisataController::class, 'umkmIndex'])->name('umkm.index');
 Route::get('/program', [WisataController::class, 'programIndex'])->name('program.index');
 
+Route::get('/berita', [WisataController::class, 'beritaIndex'])->name('posts.berita');
+Route::get('/api/berita', [WisataController::class, 'loadMoreBerita'])->name('api.berita.loadmore');
+Route::get('/pengumuman', [WisataController::class, 'pengumumanIndex'])->name('posts.pengumuman');
+Route::get('/api/pengumuman', [WisataController::class, 'loadMorePengumuman'])->name('api.pengumuman.loadmore');
+
+Route::get('/ceramah', [WisataController::class, 'ceramahIndex'])->name('ceramah.index');
+Route::get('/lokasiziarah', [WisataController::class, 'lokasiziarahIndex'])->name('lokasiziarah.index');
+Route::get('/video', [WisataController::class, 'videoIndex'])->name('video.index');
+Route::get('/paketwisata', [WisataController::class, 'paketWisataIndex'])->name('paketwisata.index');
+Route::get('/sertifikasi', [WisataController::class, 'sertifikasiIndex'])->name('sertifikasi.index');
+
 // Route::get('/ceramah', [WisataController::class, 'ceramahIndex'])->name('ceramahs.index');
 // Route::get('/ceramah/{ceramah}', [WisataController::class, 'ceramahShow'])->name('ceramahs.show');
 // Route::get('/ziarah', [WisataController::class, 'ziarahIndex'])->name('ziarahs.index');
@@ -75,6 +87,8 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+    Route::get('/profile', [AdminProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [AdminProfileController::class, 'update'])->name('profile.update');
     Route::resource('posts', PostController::class);
     Route::resource('ulama', UlamaController::class);
     // Route::resource('fasilitas', FasilitasController::class);
@@ -94,6 +108,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('artikels', ArtikelController::class);
     Route::resource('kajians', KajianController::class);
     Route::resource('potensi-kerjasama', PotensiKerjasamaController::class);
+
 });
 
 require __DIR__.'/auth.php';
