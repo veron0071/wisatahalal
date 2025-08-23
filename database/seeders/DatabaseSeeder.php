@@ -16,18 +16,26 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         $this->call([
-            PostSeeder::class,
-            UlamaSeeder::class,
-            PotensiKerjasamaSeeder::class,
-            FasilitasSeeder::class,
-            UmkmSeeder::class,
-            CeramahSeeder::class,
-            ZiarahSeeder::class,
-            VideoSeeder::class,
-            PaketWisataSeeder::class,
-            SertifikasiSeeder::class,
-            ManuskripSeeder::class,
-            StakeholderSeeder::class,
+            //  New Seeders
+            // VisiMisiSeeder::class,
+            // ProfilLembagaSeeder::class,
+            // PotensiKerjasamaSeeder::class,
+            // StrukturOrganisasiSeeder::class,
+            // RoadmapSeeder::class,
+            ProgramKerjaSeeder::class,
+
+            // Old Seeders
+            // PostSeeder::class,
+            // UlamaSeeder::class,
+            // FasilitasSeeder::class,
+            // UmkmSeeder::class,
+            // CeramahSeeder::class,
+            // ZiarahSeeder::class,
+            // VideoSeeder::class,
+            // PaketWisataSeeder::class,
+            // SertifikasiSeeder::class,
+            // ManuskripSeeder::class,
+            // StakeholderSeeder::class,
         ]);
     }
 }
