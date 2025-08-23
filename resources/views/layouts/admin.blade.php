@@ -6,13 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Admin Panel')</title>
     <link rel="icon" type="image/png" href="{{ asset('admin_wisata.png') }}">
-
     <script src="https://cdn.tailwindcss.com"></script>
-
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <style>
@@ -23,21 +19,40 @@
 </head>
 
 <body class="h-full font-sans">
-    {{-- Inisialisasi state Alpine.js untuk sidebar --}}
     <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-100">
-
         <aside
             class="fixed inset-y-0 left-0 z-30 w-64 bg-gray-800 text-white transform transition-transform duration-300 ease-in-out md:relative md:translate-x-0"
             :class="{ 'translate-x-0': sidebarOpen, '-translate-x-full': !sidebarOpen }"
             @click.away="sidebarOpen = false" x-cloak>
             <div class="h-16 flex items-center justify-center text-xl font-bold border-b border-gray-700">
-                <a href="{{ route('admin.dashboard') }}" class="text-white hover:text-gray-300 transition-colors">
-                    Admin Panel
-                </a>
+                <a href="{{ route('admin.dashboard') }}" class="text-white hover:text-gray-300 transition-colors">Admin
+                    Panel</a>
             </div>
-            <nav class="flex-1 px-2 py-4 space-y-2">
+            <nav class="flex-1 px-2 py-4 space-y-1">
                 @php
                     $menuItems = [
+                        'publikasi' => [
+                            'icon' => 'bi-book-half',
+                            'label' => 'Publikasi',
+                            'children' => [
+                                'buku' => ['label' => 'Buku', 'route' => 'admin.buku.index'],
+                                'khazanah' => ['label' => 'Khazanah', 'route' => 'admin.khazanah.index'],
+                                'phbn' => ['label' => 'Peringatan Hari Besar', 'route' => 'admin.phbn.index'],
+                                'artikel-ilmiah' => [
+                                    'label' => 'Artikel Ilmiah',
+                                    'route' => 'admin.artikel-ilmiah.index',
+                                ],
+                                'materi-presentasi' => [
+                                    'label' => 'Materi Presentasi',
+                                    'route' => 'admin.materi-presentasi.index',
+                                ],
+                                'laporan' => [
+                                    'label' => 'Laporan Pertanggung Jawaban',
+                                    'route' => 'admin.laporan.index',
+                                ],
+                                // Tanda
+                            ],
+                        ],
                         'posts' => ['icon' => 'bi-pin-angle-fill', 'label' => 'Posts', 'route' => 'admin.posts.index'],
                         'ulama' => [
                             'icon' => 'bi-person-lines-fill',
@@ -92,14 +107,51 @@
                 @endphp
 
                 @foreach ($menuItems as $key => $item)
-                    <a href="{{ route($item['route']) }}"
-                        class="flex items-center px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200
-                              {{ request()->routeIs('admin.' . $key . '.*') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
-                        <i class="bi {{ $item['icon'] }} mr-3"></i>
-                        {{ $item['label'] }}
-                    </a>
+                    {{-- Jika item punya sub-menu (children) --}}
+                    @if (isset($item['children']))
+                        @php
+                            // Cek apakah salah satu child route sedang aktif
+                            $childRoutes = array_map(
+                                fn($child) => 'admin.' . explode('.', $child['route'])[1] . '.*',
+                                $item['children'],
+                            );
+                            $isActive = request()->routeIs($childRoutes);
+                        @endphp
+                        <div x-data="{ open: {{ $isActive ? 'true' : 'false' }} }">
+                            <button @click="open = !open"
+                                class="w-full flex items-center justify-between px-4 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
+                                <span class="flex items-center">
+                                    <i class="bi {{ $item['icon'] }} mr-3"></i>
+                                    {{ $item['label'] }}
+                                </span>
+                                <svg class="w-5 h-5 transform transition-transform duration-200"
+                                    :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <div x-show="open" x-transition class="mt-1 space-y-1 pl-8">
+                                @foreach ($item['children'] as $childKey => $child)
+                                    <a href="{{ route($child['route']) }}"
+                                        class="block px-4 py-2 rounded-md text-sm font-medium {{ request()->routeIs('admin.' . $childKey . '.*') ? 'text-white bg-gray-900' : 'text-gray-400 hover:bg-gray-700 hover:text-white' }}">
+                                        {{ $child['label'] }}
+                                    </a>
+                                @endforeach
+                            </div>
+                        </div>
+                    @else
+                        {{-- Jika item adalah menu biasa (tanpa dropdown) --}}
+                        <a href="{{ route($item['route']) }}"
+                            class="flex items-center px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200
+                                  {{ request()->routeIs('admin.' . $key . '.*') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
+                            <i class="bi {{ $item['icon'] }} mr-3"></i>
+                            {{ $item['label'] }}
+                        </a>
+                    @endif
                 @endforeach
             </nav>
+
         </aside>
 
         <div class="flex-1 flex flex-col overflow-hidden">
@@ -123,7 +175,6 @@
                     </form>
                 </div>
             </header>
-
             <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
                 @yield('content')
             </main>

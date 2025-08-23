@@ -10,6 +10,14 @@ use App\Http\Controllers\ProfileController;
 
 // Controllers for Admin Panel
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
+use App\Http\Controllers\Admin\BukuController;
+use App\Http\Controllers\Admin\KhazanahController;
+use App\Http\Controllers\Admin\PhbnController;
+use App\Http\Controllers\Admin\MateriPresentasiController;
+use App\Http\Controllers\Admin\LaporanController;
+
+// Old Controllers
+use App\Http\Controllers\Admin\ArtikelIlmiahController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\UlamaController;
@@ -89,6 +97,15 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
     Route::get('/profile', [AdminProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [AdminProfileController::class, 'update'])->name('profile.update');
+
+    // Revisi
+    Route::resource('buku', BukuController::class);
+    Route::resource('khazanah', KhazanahController::class);
+    Route::resource('phbn', PhbnController::class);
+    Route::resource('artikel-ilmiah', ArtikelIlmiahController::class);
+    Route::resource('materi-presentasi', MateriPresentasiController::class);
+    Route::resource('laporan', LaporanController::class);
+
     Route::resource('posts', PostController::class);
     Route::resource('ulama', UlamaController::class);
     // Route::resource('fasilitas', FasilitasController::class);
