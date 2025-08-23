@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProfilLembaga;
 use App\Models\Ulama;
 use App\Models\Fasilitas;
 use App\Models\Umkm;
