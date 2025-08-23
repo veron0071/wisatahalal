@@ -4,17 +4,34 @@ use Illuminate\Support\Facades\Route;
 
 // Controllers for Public Pages
 use App\Http\Controllers\WisataController;
+use App\Http\Controllers\TentangKamiController;
+use App\Http\Controllers\ProgramKerjaController;
+use App\Http\Controllers\GaleriController;
 
 // Controllers for Authentication and Profile (from Breeze)
 use App\Http\Controllers\ProfileController;
 
 // Controllers for Admin Panel
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
+
+// Publikasi Controllers
 use App\Http\Controllers\Admin\BukuController;
 use App\Http\Controllers\Admin\KhazanahController;
 use App\Http\Controllers\Admin\PhbnController;
 use App\Http\Controllers\Admin\MateriPresentasiController;
 use App\Http\Controllers\Admin\LaporanController;
+
+// Tentang Kami Controllers
+use App\Http\Controllers\Admin\ProfilLembagaController;
+use App\Http\Controllers\Admin\VisiMisiController;
+use App\Http\Controllers\Admin\StrukturOrganisasiController;
+use App\Http\Controllers\Admin\RoadmapController;
+
+// Program Kerja Controller
+use App\Http\Controllers\Admin\ProgramKerjaController as AdminProgramKerjaController;
+
+// Galeri Controller
+use App\Http\Controllers\Admin\GaleriController as AdminGaleriController;
 
 // Old Controllers
 use App\Http\Controllers\Admin\ArtikelIlmiahController;
@@ -46,20 +63,25 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::view('/tentangkami/profilmes', 'TentangKami.ProfilMES.index')->name('tentang.profil');
-Route::view('/tentangkami/visimisi', 'TentangKami.VisiMisi.index')->name('tentang.visimisi');
-Route::view('/tentangkami/strukturorganisasi', 'TentangKami.StrukturOrganisasi.index')->name('tentang.struktur');
-Route::view('/tentangkami/roadmaporganisasi', 'TentangKami.RoadmapOrganisasi.index')->name('tentang.roadmap');
-Route::view('/tentangkami/sebaranpotensi', 'TentangKami.SebaranPotensi.index')->name('tentang.potensi');
+Route::prefix('tentangkami')->name('tentang.')->group(function () {
+    Route::get('/profil-mes', [TentangKamiController::class, 'profil'])->name('profil');
+    Route::get('/sebaran-potensi', [TentangKamiController::class, 'sebaranPotensi'])->name('potensi');
+    Route::get('/visi-misi', [TentangKamiController::class, 'visiMisi'])->name('visimisi');
+    Route::get('/struktur-organisasi', [TentangKamiController::class, 'strukturOrganisasi'])->name('struktur');
+    Route::get('/roadmap-organisasi', [TentangKamiController::class, 'roadmapOrganisasi'])->name('roadmap');
+});
 
-Route::view('/programkerja/bidangbisnis', 'ProgramKerja.BidangBisnis.index')->name('program.bisnis');
-Route::view('/programkerja/bidangkaderisasi', 'ProgramKerja.BidangKaderisasi.index')->name('program.kaderisasi');
-Route::view('/programkerja/bidangmultimedia', 'ProgramKerja.BidangMultimedia.index')->name('program.multimedia');
-Route::view('/programkerja/bidangpendidikan', 'ProgramKerja.BidangPendidikan.index')->name('program.pendidikan');
-Route::view('/programkerja/bidangpenelitian', 'ProgramKerja.BidangPenelitian.index')->name('program.penelitian');
-Route::view('/programkerja/bidangsinergi', 'ProgramKerja.BidangSinergi.index')->name('program.sinergi');
-Route::view('/programkerja/bidangziswaf', 'ProgramKerja.BidangZiswaf.index')->name('program.ziswaf');
-Route::view('/programkerja/pengrusharian', 'ProgramKerja.PengurusHarian.index')->name('program.pengurus');
+// Route::view('/programkerja/bidangbisnis', 'ProgramKerja.BidangBisnis.index')->name('program.bisnis');
+// Route::view('/programkerja/bidangkaderisasi', 'ProgramKerja.BidangKaderisasi.index')->name('program.kaderisasi');
+// Route::view('/programkerja/bidangmultimedia', 'ProgramKerja.BidangMultimedia.index')->name('program.multimedia');
+// Route::view('/programkerja/bidangpendidikan', 'ProgramKerja.BidangPendidikan.index')->name('program.pendidikan');
+// Route::view('/programkerja/bidangpenelitian', 'ProgramKerja.BidangPenelitian.index')->name('program.penelitian');
+// Route::view('/programkerja/bidangsinergi', 'ProgramKerja.BidangSinergi.index')->name('program.sinergi');
+// Route::view('/programkerja/bidangziswaf', 'ProgramKerja.BidangZiswaf.index')->name('program.ziswaf');
+// Route::view('/programkerja/pengrusharian', 'ProgramKerja.PengurusHarian.index')->name('program.pengurus');
+Route::get('/program-kerja/{bidang}', [ProgramKerjaController::class, 'show'])->name('program-kerja.show');
+
+Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri.index');
 
 
 Route::get('/ulama', [WisataController::class, 'ulamaIndex'])->name('ulama.index');
@@ -116,13 +138,30 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/profile', [AdminProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [AdminProfileController::class, 'update'])->name('profile.update');
 
-    // Revisi
+    // Tentang Kami Routes
+    Route::get('/profil-lembaga', [ProfilLembagaController::class, 'edit'])->name('profil-lembaga.edit');
+    Route::get('/visi-misi', [VisiMisiController::class, 'edit'])->name('visi-misi.edit');
+    Route::patch('/visi-misi', [VisiMisiController::class, 'update'])->name('visi-misi.update');
+    Route::get('/struktur-organisasi', [StrukturOrganisasiController::class, 'edit'])->name('struktur-organisasi.edit');
+    Route::patch('/struktur-organisasi', [StrukturOrganisasiController::class, 'update'])->name('struktur-organisasi.update');
+    Route::get('/roadmap', [RoadmapController::class, 'edit'])->name('roadmap.edit');
+    Route::patch('/profil-lembaga', [ProfilLembagaController::class, 'update'])->name('profil-lembaga.update');
+    Route::patch('/roadmap', [RoadmapController::class, 'update'])->name('roadmap.update');
+    Route::resource('potensi-kerjasama', PotensiKerjasamaController::class);
+
+    // Publikasi Routes
     Route::resource('buku', BukuController::class);
     Route::resource('khazanah', KhazanahController::class);
     Route::resource('phbn', PhbnController::class);
     Route::resource('artikel-ilmiah', ArtikelIlmiahController::class);
     Route::resource('materi-presentasi', MateriPresentasiController::class);
     Route::resource('laporan', LaporanController::class);
+
+    // Program Kerja Routes
+    Route::resource('program-kerja', AdminProgramKerjaController::class);
+
+    // Galeri Kegiatan Routes
+    Route::resource('galeri', AdminGaleriController::class);
 
     Route::resource('posts', PostController::class);
     Route::resource('ulama', UlamaController::class);
@@ -142,7 +181,6 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('pelatihans', PelatihanController::class);
     Route::resource('artikels', ArtikelController::class);
     Route::resource('kajians', KajianController::class);
-    Route::resource('potensi-kerjasama', PotensiKerjasamaController::class);
 
 });
 
