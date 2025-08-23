@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,81 +13,129 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        'jabal-green': '#255F38',
-                        'jabal-light': '#1F7D53',
-                        'jabal-putih': '#FFFFFF'
-                    },
-                    fontFamily: {
-                        sans: ['Poppins', 'sans-serif']
-                    },
-                    borderRadius: {
-                        'xl': '1rem',
-                        '2xl': '1.25rem'
-                    }
+                    colors: { 'jabal-green': '#255F38', 'jabal-light': '#1F7D53', 'jabal-putih': '#FFFFFF' },
+                    fontFamily: { sans: ['Poppins', 'sans-serif'] },
+                    borderRadius: { 'xl': '1rem', '2xl': '1.25rem' }
                 }
             }
         }
     </script>
     <style>
-        html {
-            scroll-behavior: smooth;
-        }
-
-        .custom-shadow {
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
-        }
-
-        .custom-shadow-hover:hover {
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-        }
+        html { scroll-behavior: smooth; }
+        .custom-shadow { box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07); }
+        .custom-shadow-hover:hover { box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1); }
     </style>
 </head>
 
 <body class="bg-slate-50">
 
     <div class="relative min-h-screen md:flex">
+        
         <aside id="sidebar"
             class="fixed top-0 left-0 z-50 w-64 h-screen bg-white border-r p-6 transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
             <a href="{{ route('home') }}" class="text-xl font-bold text-jabal-green">Wisata Jabal Nur</a>
-            <nav class="mt-8">
+            <nav class="mt-8 flex-grow overflow-y-auto">
                 <ul class="space-y-2">
-                    <li><a href="{{ route('ulama.index') }}"
-                            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span
-                                class="ml-3">Sejarah Ulama</span></a></li>
-                    <li><a href="{{ route('fasilitas.index') }}"
-                            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span
-                                class="ml-3">Fasilitas</span></a></li>
-                    <li><a href="{{ route('umkm.index') }}"
-                            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span
-                                class="ml-3">UMKM Halal</span></a></li>
-                    <li><a href="{{ route('ceramah.index') }}"
-                            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span
-                                class="ml-3">Ceramah & Kajian</span></a></li>
-                    <li><a href="{{ route('ziarahs.index') }}"
-                            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span
-                                class="ml-3">Lokasi Ziarah</span></a></li>
-                    <li><a href="{{ route('video.index') }}"
-                            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span
-                                class="ml-3">Video</span></a></li>
-                    <li><a href="{{ route('paketwisata.index') }}"
-                            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span
-                                class="ml-3">Paket Wisata</span></a></li>
-                    {{-- <li><a href="{{ route('sertifikasi.index') }}"
-                            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span
-                                class="ml-3">Sertifikasi Halal</span></a></li>
-                    <li> --}}
-                    <hr class="my-2 border-gray-200">
+                    
+                    <li x-data="{ open: false }">
+                        <button @click="open = !open" class="flex items-center justify-between w-full p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100">
+                            {{-- PERUBAHAN DI SINI --}}
+                            <span class="ml-3 flex-grow text-left">Program MES Kendal</span>
+                            <svg class="w-4 h-4 transition-transform duration-200" :class="{'rotate-180': open}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <ul x-show="open" x-transition class="pl-8 mt-2 space-y-2">
+                            <li><a href="{{ route('tentang.profil') }}" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Profil MES Kendal</a></li>
+                            <li><a href="{{ route('tentang.visimisi') }}" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Visi Misi</a></li>
+                            <li><a href="{{ route('tentang.struktur') }}" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Struktur Organisasi</a></li>
+                            <li><a href="{{ route('tentang.roadmap') }}" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Roadmap Organisasi</a></li>
+                            <li><a href="{{ route('tentang.potensi') }}" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Sebaran Potensi Kerjasama</a></li>
+                        </ul>
                     </li>
-                    <li><a href="{{ route('posts.berita') }}"
-                            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span
-                                class="ml-3">Berita</span></a></li>
-                    <li><a href="{{ route('posts.pengumuman') }}"
-                            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span
-                                class="ml-3">Pengumuman</span></a></li>
-                    <li><a href="{{ route('program.index') }}"
-                            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"><span
-                                class="ml-3">Program Kerja</span></a></li>
+
+                    <li x-data="{ open: false }">
+                        <button @click="open = !open" class="flex items-center justify-between w-full p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100">
+                            {{-- PERUBAHAN DI SINI --}}
+                            <span class="ml-3 flex-grow text-left">Program Kerja</span>
+                            <svg class="w-4 h-4 transition-transform duration-200" :class="{'rotate-180': open}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <ul x-show="open" x-transition class="pl-8 mt-2 space-y-2">
+                            <li><a href="{{ route('program.pengurus') }}" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Pengurus Harian</a></li>
+                            <li><a href="{{ route('program.ziswaf') }}" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Bidang Ziswaf dan CSR</a></li>
+                            <li><a href="{{ route('program.penelitian') }}" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Bidang Penelitian dan Pengembangan Ekonomi Syariah</a></li>
+                            <li><a href="{{ route('program.bisnis') }}" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Bidang Bisnis, Pariwisata, dan Ekonomi Kreatif</a></li>
+                            <li><a href="{{ route('program.multimedia') }}" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Bidang Multimedia dan Kominfo</a></li>
+                            <li><a href="{{ route('program.sinergi') }}" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Bidang Sinergi Antar Lembaga Dan Komunitas</a></li>
+                            <li><a href="{{ route('program.kaderisasi') }}" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Bidang Kaderisasi</a></li>
+                            <li><a href="{{ route('program.pendidikan') }}" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Bidang Pendidikan dan Pelatihan</a></li>
+                        </ul>
+                    </li>
+
+                    <li x-data="{ open: false }">
+                        <button @click="open = !open" class="flex items-center justify-between w-full p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100">
+                            {{-- PERUBAHAN DI SINI --}}
+                            <span class="ml-3 flex-grow text-left">Publikasi</span>
+                            <svg class="w-4 h-4 transition-transform duration-200" :class="{'rotate-180': open}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <ul x-show="open" x-transition class="pl-8 mt-2 space-y-2">
+                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Buku</a></li>
+                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Khazanah</a></li>
+                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Peringatan Hari Besar Nasional</a></li>
+                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Artikel Ilmiah</a></li>
+                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Materi Presentasi</a></li>
+                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Laporan Pertanggung Jawaban</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li x-data="{ open: false }">
+                        <button @click="open = !open" class="flex items-center justify-between w-full p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100">
+                            {{-- PERUBAHAN DI SINI --}}
+                            <span class="ml-3 flex-grow text-left">Galeri Kegiatan</span>
+                        </button>
+                    </li>
+
+
+                    <li x-data="{ open: false }">
+                        <button @click="open = !open" class="flex items-center justify-between w-full p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100">
+                            {{-- PERUBAHAN DI SINI --}}
+                            <span class="ml-3 flex-grow text-left">Ekosistem Halal</span>
+                            <svg class="w-4 h-4 transition-transform duration-200" :class="{'rotate-180': open}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <ul x-show="open" x-transition class="pl-8 mt-2 space-y-2">
+                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Galery Investasi Syariah Pesantren</a></li>
+                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Kawasan Wisata Halal</a></li>
+                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Sertifikasi Produk Halal</a></li>
+                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Industri Keuangan Syariah</a></li>
+                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Komunitas Investor Halal Kendal</a></li>
+                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Komunitas UMKM Halal Kendal</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li x-data="{ open: false }">
+                        <button @click="open = !open" class="flex items-center justify-between w-full p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100">
+                            {{-- PERUBAHAN DI SINI --}}
+                            <span class="ml-3 flex-grow text-left">Opini & Berita</span>
+                            <svg class="w-4 h-4 transition-transform duration-200" :class="{'rotate-180': open}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <ul x-show="open" x-transition class="pl-8 mt-2 space-y-2">
+                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Press Release PkM Unwahas dan PD MES Kendal di Jabal Nur Kaliwungu Selatan</a></li>
+                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Press Release RMS Chapter Kendal - PD MES Kendal</a></li>
+                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Press Release PD MES Kendal Gelar Workshop Literasi dan Inklusifitas Keuangan Syariah</a></li>
+                        </ul>
+                    </li>
+
+
                 </ul>
             </nav>
         </aside>
@@ -112,25 +159,52 @@
                     </button>
                     <a href="{{ route('home') }}" class="text-xl font-bold text-jabal-green">Wisata Jabal Nur</a>
                 </div>
-                <div class="hidden md:flex items-center gap-2">
-                    <a href="{{ route('posts.berita') }}"
-                        class="px-4 py-2 text-sm font-semibold text-gray-600 rounded-lg hover:bg-gray-100 transition-colors">Berita</a>
-                    <a href="{{ route('posts.pengumuman') }}"
-                        class="px-4 py-2 text-sm font-semibold text-gray-600 rounded-lg hover:bg-gray-100 transition-colors">Pengumuman</a>
-                    <a href="{{ route('program.index') }}"
-                        class="px-4 py-2 text-sm font-semibold text-gray-600 rounded-lg hover:bg-gray-100 transition-colors">Program
-                        Kerja</a>
-                </div>
             </header>
 
             <main class="flex-grow">
                 @yield('content')
             </main>
 
-            <footer class="text-center py-8 bg-slate-50 border-t">
-                <p class="text-gray-500 text-sm">&copy; {{ date('Y') }} Wisata Halal Jabal Nur. Dikembangkan oleh
-                    PD
-                    MES Kendal.</p>
+            <footer class="py-12 bg-white border-t">
+                <div class="container mx-auto px-6 text-center">    
+                    
+                    <h2 class="text-2xl font-bold text-jabal-green mb-2">Hubungi Kami</h2>
+                    <p class="text-gray-500 mb-8 max-w-xl mx-auto">Untuk informasi lebih lanjut mengenai program dan potensi kerjasama dengan Pengurus Daerah Masyarakat Ekonomi Syariah (MES) Kendal.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                        
+                        <div class="bg-slate-50 p-6 rounded-lg border">
+                            <p class="font-bold text-gray-800">Ketua Umum</p>
+                            <p class="text-gray-600 text-sm">M. Irkham Fukhuludin, SEI. CWC.</p>
+                            <a href="https://wa.me/6281901570870" target="_blank" class="inline-flex items-center gap-2 mt-2 text-jabal-light hover:underline text-sm font-semibold">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24 "><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.487 5.235 3.487 8.413 0 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.447-4.435-9.884-9.888-9.884-5.448 0-9.886 4.434-9.889 9.885.002 2.024.603 3.992 1.742 5.688l.263.393-1.019 3.75z"/></svg>
+                                <span>+62 819-0157-0870</span>
+                            </a>
+                        </div>
+
+                        <div class="bg-slate-50 p-6 rounded-lg border">
+                            <p class="font-bold text-gray-800">Sekretaris Umum</p>
+                            <p class="text-gray-600 text-sm">M. Fatchurrohman, SHI, ME.</p>
+                            <a href="https://wa.me/6287730046561" target="_blank" class="inline-flex items-center gap-2 mt-2 text-jabal-light hover:underline text-sm font-semibold">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.487 5.235 3.487 8.413 0 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.447-4.435-9.884-9.888-9.884-5.448 0-9.886 4.434-9.889 9.885.002 2.024.603 3.992 1.742 5.688l.263.393-1.019 3.75z"/></svg>
+                                <span>+62 877-3004-6561</span>
+                            </a>
+                        </div>
+
+                        <div class="bg-slate-50 p-6 rounded-lg border">
+                            <p class="font-bold text-gray-800">Bendahara Umum</p>
+                            <p class="text-gray-600 text-sm">Iqbal Sarayulus Nuh, SM</p>
+                            <a href="https://wa.me/6285640952149" target="_blank" class="inline-flex items-center gap-2 mt-2 text-jabal-light hover:underline text-sm font-semibold">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.487 5.235 3.487 8.413 0 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.447-4.435-9.884-9.888-9.884-5.448 0-9.886 4.434-9.889 9.885.002 2.024.603 3.992 1.742 5.688l.263.393-1.019 3.75z"/></svg>
+                                <span>+62 856-4095-2149</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="mt-12 pt-8 border-t border-slate-200">
+                        <p class="text-gray-500 text-sm">&copy; {{ date('Y') }} Wisata Halal Jabal Nur. Dikembangkan oleh PD MES Kendal.</p>
+                    </div>
+                </div>
             </footer>
         </div>
     </div>
@@ -146,28 +220,21 @@
 
             function toggleSidebar() {
                 const isSidebarOpen = !sidebar.classList.contains('-translate-x-full');
-
                 sidebar.classList.toggle('-translate-x-full');
                 iconOpen.classList.toggle('hidden');
                 iconClose.classList.toggle('hidden');
-
-                // Logika untuk mobile (menggunakan overlay) vs desktop (mendorong konten)
                 if (window.innerWidth < 768) {
                     overlay.classList.toggle('hidden');
                 } else {
                     mainContent.classList.toggle('ml-64', !isSidebarOpen);
                 }
             }
-
-            // Cek kondisi awal saat halaman dimuat untuk desktop
             if (window.innerWidth >= 768) {
-                // Biarkan sidebar tertutup saat pertama kali dimuat
                 sidebar.classList.add('-translate-x-full');
                 mainContent.classList.remove('ml-64');
                 iconOpen.classList.remove('hidden');
                 iconClose.classList.add('hidden');
             }
-
             toggleBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 toggleSidebar();
@@ -176,5 +243,4 @@
         });
     </script>
 </body>
-
 </html>
