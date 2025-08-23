@@ -44,6 +44,16 @@ Route::view('/tentangkami/strukturorganisasi', 'TentangKami.StrukturOrganisasi.i
 Route::view('/tentangkami/roadmaporganisasi', 'TentangKami.RoadmapOrganisasi.index')->name('tentang.roadmap');
 Route::view('/tentangkami/sebaranpotensi', 'TentangKami.SebaranPotensi.index')->name('tentang.potensi');
 
+Route::view('/programkerja/bidangbisnis', 'ProgramKerja.BidangBisnis.index')->name('program.bisnis');
+Route::view('/programkerja/bidangkaderisasi', 'ProgramKerja.BidangKaderisasi.index')->name('program.kaderisasi');
+Route::view('/programkerja/bidangmultimedia', 'ProgramKerja.BidangMultimedia.index')->name('program.multimedia');
+Route::view('/programkerja/bidangpendidikan', 'ProgramKerja.BidangPendidikan.index')->name('program.pendidikan');
+Route::view('/programkerja/bidangpenelitian', 'ProgramKerja.BidangPenelitian.index')->name('program.penelitian');
+Route::view('/programkerja/bidangsinergi', 'ProgramKerja.BidangSinergi.index')->name('program.sinergi');
+Route::view('/programkerja/bidangziswaf', 'ProgramKerja.BidangZiswaf.index')->name('program.ziswaf');
+Route::view('/programkerja/pengrusharian', 'ProgramKerja.PengurusHarian.index')->name('program.pengurus');
+
+
 Route::get('/ulama', [WisataController::class, 'ulamaIndex'])->name('ulama.index');
 Route::get('/ulama/{ulama}', [WisataController::class, 'ulamaShow'])->name('ulama.show');
 Route::get('/fasilitas', [WisataController::class, 'fasilitasIndex'])->name('fasilitas.index');
