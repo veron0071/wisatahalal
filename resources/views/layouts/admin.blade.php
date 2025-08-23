@@ -31,6 +31,41 @@
             <nav class="flex-1 px-2 py-4 space-y-1">
                 @php
                     $menuItems = [
+                        'dashboard' => ['icon' => 'bi-grid-1x2', 'label' => 'Dashboard', 'route' => 'admin.dashboard'],
+
+                        'tentang-kami' => [
+                            'icon' => 'bi-info-circle',
+                            'label' => 'Tentang Kami',
+                            'children' => [
+                                'profil-lembaga' => [
+                                    'label' => 'Profil MES Kendal',
+                                    'route' => 'admin.profil-lembaga.edit',
+                                ],
+                                'visi-misi' => ['label' => 'Visi Misi', 'route' => 'admin.visi-misi.edit'],
+                                'struktur-organisasi' => [
+                                    'label' => 'Struktur Organisasi',
+                                    'route' => 'admin.struktur-organisasi.edit',
+                                ],
+                                'roadmap' => ['label' => 'Roadmap Organisasi', 'route' => 'admin.roadmap.edit'],
+                                'potensi-kerjasama' => [
+                                    'label' => 'Potensi Kerjasama',
+                                    'route' => 'admin.potensi-kerjasama.index',
+                                ],
+                            ],
+                        ],
+
+                        'program-kerja' => [
+                            'icon' => 'bi-kanban',
+                            'label' => 'Program Kerja',
+                            'route' => 'admin.program-kerja.index',
+                        ],
+
+                        'galeri' => [
+                            'icon' => 'bi-images',
+                            'label' => 'Galeri Kegiatan',
+                            'route' => 'admin.galeri.index',
+                        ],
+
                         'publikasi' => [
                             'icon' => 'bi-book-half',
                             'label' => 'Publikasi',
@@ -97,11 +132,6 @@
                             'icon' => 'bi-people',
                             'label' => 'Stakeholders',
                             'route' => 'admin.stakeholders.index',
-                        ],
-                        'potensi-kerjasama' => [
-                            'icon' => 'bi-diagram-3',
-                            'label' => 'Potensi Kerjasama',
-                            'route' => 'admin.potensi-kerjasama.index',
                         ],
                     ];
                 @endphp
