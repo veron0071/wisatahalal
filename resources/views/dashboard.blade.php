@@ -1,146 +1,88 @@
 @extends('layouts.admin')
-
 @section('title', 'Dashboard')
 
 @section('content')
     {{-- Bagian Header Sambutan --}}
     <div>
         <h1 class="text-2xl font-semibold text-gray-900">Selamat Datang, {{ Auth::user()->name }}!</h1>
-        <p class="mt-2 text-sm text-gray-700">Anda berada di Panel Admin. Berikut adalah ringkasan data dari situs Wisata
-            Halal Jabal Nur.</p>
+        <p class="mt-2 text-sm text-gray-700">Berikut adalah ringkasan data dari panel admin Anda.</p>
     </div>
 
     {{-- Kartu Statistik --}}
     <div class="mt-8">
-        <dl class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <dl class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
 
-            {{-- Kartu Posts --}}
+            {{-- Kartu Publikasi --}}
             <div class="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-8 shadow sm:px-6 sm:pt-6">
                 <dt>
-                    <div class="absolute rounded-md bg-indigo-500 p-3"><i class="bi bi-pin-angle-fill text-white"></i></div>
-                    <p class="ml-16 truncate text-sm font-medium text-gray-500">Total Posts</p>
-                </dt>
-                <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
-                    <p class="text-2xl font-semibold text-gray-900">{{ $jumlahPosts }}</p>
-                </dd>
-            </div>
-
-            {{-- Kartu Ulama --}}
-            <div class="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-8 shadow sm:px-6 sm:pt-6">
-                <dt>
-                    <div class="absolute rounded-md bg-indigo-500 p-3"><i class="bi bi-person-lines-fill text-white"></i>
+                    <div class="absolute flex h-12 w-12 items-center justify-center rounded-md bg-indigo-500">
+                        <i class="bi bi-book-half text-2xl text-white"></i>
                     </div>
-                    <p class="ml-16 truncate text-sm font-medium text-gray-500">Total Ulama</p>
+                    <p class="ml-16 truncate text-sm font-medium text-gray-500">Total Publikasi</p>
                 </dt>
                 <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
-                    <p class="text-2xl font-semibold text-gray-900">{{ $jumlahUlama }}</p>
+                    <p class="text-2xl font-semibold text-gray-900">{{ $jumlahPublikasi }}</p>
                 </dd>
             </div>
 
-            {{-- Kartu Fasilitas --}}
+            {{-- Kartu Program Kerja --}}
             <div class="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-8 shadow sm:px-6 sm:pt-6">
                 <dt>
-                    <div class="absolute rounded-md bg-indigo-500 p-3"><i class="bi bi-building text-white"></i></div>
-                    <p class="ml-16 truncate text-sm font-medium text-gray-500">Total Fasilitas</p>
-                </dt>
-                <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
-                    <p class="text-2xl font-semibold text-gray-900">{{ $jumlahFasilitas }}</p>
-                </dd>
-            </div>
-
-            {{-- Kartu UMKM --}}
-            <div class="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-8 shadow sm:px-6 sm:pt-6">
-                <dt>
-                    <div class="absolute rounded-md bg-indigo-500 p-3"><i class="bi bi-shop text-white"></i></div>
-                    <p class="ml-16 truncate text-sm font-medium text-gray-500">Total UMKM</p>
-                </dt>
-                <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
-                    <p class="text-2xl font-semibold text-gray-900">{{ $jumlahUmkm }}</p>
-                </dd>
-            </div>
-
-            {{-- Kartu Ceramah --}}
-            <div class="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-8 shadow sm:px-6 sm:pt-6">
-                <dt>
-                    <div class="absolute rounded-md bg-indigo-500 p-3"><i class="bi bi-mic text-white"></i></div>
-                    <p class="ml-16 truncate text-sm font-medium text-gray-500">Total Ceramah</p>
-                </dt>
-                <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
-                    <p class="text-2xl font-semibold text-gray-900">{{ $jumlahCeramah }}</p>
-                </dd>
-            </div>
-
-            {{-- Kartu Lokasi Ziarah --}}
-            <div class="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-8 shadow sm:px-6 sm:pt-6">
-                <dt>
-                    <div class="absolute rounded-md bg-indigo-500 p-3"><i class="bi bi-geo-alt text-white"></i></div>
-                    <p class="ml-16 truncate text-sm font-medium text-gray-500">Lokasi Ziarah</p>
-                </dt>
-                <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
-                    <p class="text-2xl font-semibold text-gray-900">{{ $jumlahZiarah }}</p>
-                </dd>
-            </div>
-
-            {{-- Kartu Video --}}
-            <div class="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-8 shadow sm:px-6 sm:pt-6">
-                <dt>
-                    <div class="absolute rounded-md bg-indigo-500 p-3"><i class="bi bi-play-btn text-white"></i></div>
-                    <p class="ml-16 truncate text-sm font-medium text-gray-500">Total Video</p>
-                </dt>
-                <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
-                    <p class="text-2xl font-semibold text-gray-900">{{ $jumlahVideo }}</p>
-                </dd>
-            </div>
-
-            {{-- Kartu Paket Wisata --}}
-            <div class="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-8 shadow sm:px-6 sm:pt-6">
-                <dt>
-                    <div class="absolute rounded-md bg-indigo-500 p-3"><i class="bi bi-backpack text-white"></i></div>
-                    <p class="ml-16 truncate text-sm font-medium text-gray-500">Paket Wisata</p>
-                </dt>
-                <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
-                    <p class="text-2xl font-semibold text-gray-900">{{ $jumlahPaketWisata }}</p>
-                </dd>
-            </div>
-
-            {{-- Kartu Sertifikasi --}}
-            <div class="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-8 shadow sm:px-6 sm:pt-6">
-                <dt>
-                    <div class="absolute rounded-md bg-indigo-500 p-3"><i class="bi bi-award text-white"></i></div>
-                    <p class="ml-16 truncate text-sm font-medium text-gray-500">Sertifikasi Halal</p>
-                </dt>
-                <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
-                    <p class="text-2xl font-semibold text-gray-900">{{ $jumlahSertifikasi }}</p>
-                </dd>
-            </div>
-
-            {{-- Kartu Manuskrip --}}
-            <div class="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-8 shadow sm:px-6 sm:pt-6">
-                <dt>
-                    <div class="absolute rounded-md bg-indigo-500 p-3"><i class="bi bi-journal-bookmark text-white"></i>
+                    <div class="absolute flex h-12 w-12 items-center justify-center rounded-md bg-indigo-500">
+                        <i class="bi bi-kanban text-2xl text-white"></i>
                     </div>
-                    <p class="ml-16 truncate text-sm font-medium text-gray-500">Arsip Manuskrip</p>
+                    <p class="ml-16 truncate text-sm font-medium text-gray-500">Total Program Kerja</p>
                 </dt>
                 <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
-                    <p class="text-2xl font-semibold text-gray-900">{{ $jumlahManuskrip }}</p>
+                    <p class="text-2xl font-semibold text-gray-900">{{ $jumlahProgramKerja }}</p>
                 </dd>
             </div>
 
-            {{-- Kartu Stakeholder --}}
+            {{-- Kartu Opini & Berita --}}
             <div class="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-8 shadow sm:px-6 sm:pt-6">
                 <dt>
-                    <div class="absolute rounded-md bg-indigo-500 p-3"><i class="bi bi-people text-white"></i></div>
-                    <p class="ml-16 truncate text-sm font-medium text-gray-500">Stakeholder</p>
+                    <div class="absolute flex h-12 w-12 items-center justify-center rounded-md bg-indigo-500">
+                        <i class="bi bi-newspaper text-2xl text-white"></i>
+                    </div>
+                    <p class="ml-16 truncate text-sm font-medium text-gray-500">Total Opini & Berita</p>
                 </dt>
                 <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
-                    <p class="text-2xl font-semibold text-gray-900">{{ $jumlahStakeholder }}</p>
+                    <p class="text-2xl font-semibold text-gray-900">{{ $jumlahOpiniBerita }}</p>
+                </dd>
+            </div>
+
+            {{-- Kartu Galeri Kegiatan --}}
+            <div class="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-8 shadow sm:px-6 sm:pt-6">
+                <dt>
+                    <div class="absolute flex h-12 w-12 items-center justify-center rounded-md bg-indigo-500">
+                        <i class="bi bi-images text-2xl text-white"></i>
+                    </div>
+                    <p class="ml-16 truncate text-sm font-medium text-gray-500">Total Galeri Kegiatan</p>
+                </dt>
+                <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
+                    <p class="text-2xl font-semibold text-gray-900">{{ $jumlahGaleri }}</p>
+                </dd>
+            </div>
+
+            {{-- Kartu Kawasan Wisata Halal --}}
+            <div class="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-8 shadow sm:px-6 sm:pt-6">
+                <dt>
+                    <div class="absolute flex h-12 w-12 items-center justify-center rounded-md bg-indigo-500">
+                        <i class="bi bi-compass text-2xl text-white"></i>
+                    </div>
+                    <p class="ml-16 truncate text-sm font-medium text-gray-500">Data Kawasan Wisata</p>
+                </dt>
+                <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
+                    <p class="text-2xl font-semibold text-gray-900">{{ $jumlahKawasan }}</p>
                 </dd>
             </div>
 
             {{-- Kartu Potensi Kerjasama --}}
             <div class="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-8 shadow sm:px-6 sm:pt-6">
                 <dt>
-                    <div class="absolute rounded-md bg-indigo-500 p-3"><i class="bi bi-diagram-3 text-white"></i></div>
+                    <div class="absolute flex h-12 w-12 items-center justify-center rounded-md bg-indigo-500">
+                        <i class="bi bi-diagram-3 text-2xl text-white"></i>
+                    </div>
                     <p class="ml-16 truncate text-sm font-medium text-gray-500">Potensi Kerjasama</p>
                 </dt>
                 <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
@@ -149,5 +91,45 @@
             </div>
 
         </dl>
+    </div>
+
+    {{-- Bagian Akses Cepat --}}
+    <div class="mt-10">
+        <h2 class="text-lg font-semibold text-gray-900">Akses Cepat</h2>
+        <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+
+            <a href="{{ route('admin.publikasi.create') }}"
+                class="flex flex-col items-center justify-center rounded-lg bg-white p-6 shadow hover:shadow-lg transition-shadow">
+                <div class="flex h-16 w-16 items-center justify-center rounded-full bg-indigo-100">
+                    <i class="bi bi-book-half text-2xl text-indigo-600"></i>
+                </div>
+                <p class="mt-4 font-semibold text-gray-800">Tambah Publikasi Baru</p>
+            </a>
+
+            <a href="{{ route('admin.opini-berita.create') }}"
+                class="flex flex-col items-center justify-center rounded-lg bg-white p-6 shadow hover:shadow-lg transition-shadow">
+                <div class="flex h-16 w-16 items-center justify-center rounded-full bg-indigo-100">
+                    <i class="bi bi-newspaper text-2xl text-indigo-600"></i>
+                </div>
+                <p class="mt-4 font-semibold text-gray-800">Tambah Opini/Berita</p>
+            </a>
+
+            <a href="{{ route('admin.program-kerja.create') }}"
+                class="flex flex-col items-center justify-center rounded-lg bg-white p-6 shadow hover:shadow-lg transition-shadow">
+                <div class="flex h-16 w-16 items-center justify-center rounded-full bg-indigo-100">
+                    <i class="bi bi-kanban text-2xl text-indigo-600"></i>
+                </div>
+                <p class="mt-4 font-semibold text-gray-800">Tambah Program Kerja</p>
+            </a>
+
+            <a href="{{ route('admin.galeri.create') }}"
+                class="flex flex-col items-center justify-center rounded-lg bg-white p-6 shadow hover:shadow-lg transition-shadow">
+                <div class="flex h-16 w-16 items-center justify-center rounded-full bg-indigo-100">
+                    <i class="bi bi-images text-2xl text-indigo-600"></i>
+                </div>
+                <p class="mt-4 font-semibold text-gray-800">Upload Galeri Baru</p>
+            </a>
+
+        </div>
     </div>
 @endsection
