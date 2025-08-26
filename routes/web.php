@@ -17,11 +17,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 
 // Publikasi Controllers
-use App\Http\Controllers\Admin\BukuController;
-use App\Http\Controllers\Admin\KhazanahController;
-use App\Http\Controllers\Admin\PhbnController;
-use App\Http\Controllers\Admin\MateriPresentasiController;
-use App\Http\Controllers\Admin\LaporanController;
+use App\Http\Controllers\Admin\PublikasiController;
 
 // Tentang Kami Controllers
 use App\Http\Controllers\Admin\ProfilLembagaController;
@@ -35,20 +31,9 @@ use App\Http\Controllers\Admin\ProgramKerjaController as AdminProgramKerjaContro
 // Galeri Controller
 use App\Http\Controllers\Admin\GaleriController as AdminGaleriController;
 
-// Publikasi Controllers
-use App\Http\Controllers\Admin\PublikasiController;
 
 // Ekosistem Halal Controllers
 use App\Http\Controllers\Admin\GisPesantrenController;
-// use App\Http\Controllers\Admin\SejarahPerkembanganController;
-// use App\Http\Controllers\Admin\FasilitasKondisiController;
-// use App\Http\Controllers\Admin\LokasiKawasanController;
-// use App\Http\Controllers\Admin\DokumentasiKegiatanController;
-// use App\Http\Controllers\Admin\PendataanUmkmController;
-// use App\Http\Controllers\Admin\KomunitasInvestorHalalController;
-// use App\Http\Controllers\Admin\KomunitasUmkmHalalController;
-
-// Kawasan Wisata Halal Controllers
 use App\Http\Controllers\Admin\KawasanWisataHalalController;
 
 // Sertifikasi Halal Controllers
