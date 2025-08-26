@@ -121,26 +121,9 @@
                         <button @click="open = !open"
                             class="flex items-center justify-between w-full p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100">
                             {{-- PERUBAHAN DI SINI --}}
-                            <span class="ml-3 flex-grow text-left">Publikasi</span>
-                            <svg class="w-4 h-4 transition-transform duration-200" :class="{ 'rotate-180': open }"
-                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M19 9l-7 7-7-7"></path>
-                            </svg>
+                            <span class="ml-3 flex-grow text-left"><a
+                                    href="{{ route('publikasi.index') }}">Publikasi</a></span>
                         </button>
-                        <ul x-show="open" x-transition class="pl-8 mt-2 space-y-2">
-                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Buku</a></li>
-                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Khazanah</a>
-                            </li>
-                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Peringatan Hari
-                                    Besar Nasional</a></li>
-                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Artikel
-                                    Ilmiah</a></li>
-                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Materi
-                                    Presentasi</a></li>
-                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Laporan
-                                    Pertanggung Jawaban</a></li>
-                        </ul>
                     </li>
 
 

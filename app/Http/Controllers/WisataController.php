@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProfilLembaga;
+use App\Models\Publikasi;
 use App\Models\Ulama;
 use App\Models\Fasilitas;
 use App\Models\Umkm;
@@ -25,6 +26,24 @@ class WisataController extends Controller
 {
 
     private const PAGINATION_COUNT = 9;
+
+
+    public function publikasiIndex(Request $request)
+    {
+        // 1. Ambil semua nama kategori yang unik untuk tombol filter
+        $kategoris = Publikasi::select('kategori')->distinct()->pluck('kategori');
+
+        // 2. Tentukan kategori yang aktif. Jika tidak ada di URL, default-nya adalah 'Buku'
+        $selectedKategori = $request->query('kategori', 'Buku');
+
+        // 3. Ambil data publikasi HANYA dari kategori yang dipilih
+        $publikasiItems = Publikasi::where('kategori', $selectedKategori)
+                                ->latest()
+                                ->get();
+
+        // 4. Kirim semua data yang dibutuhkan ke view
+        return view('publikasi.index', compact('kategoris', 'selectedKategori', 'publikasiItems'));
+    }
 
     // =================== POST  ===================
     public function beritaIndex()
