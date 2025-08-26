@@ -17,7 +17,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 
 // Publikasi Controllers
-use App\Http\Controllers\Admin\PublikasiController;
+// use App\Http\Controllers\Admin\PublikasiController;
 
 // Tentang Kami Controllers
 use App\Http\Controllers\Admin\ProfilLembagaController;
@@ -111,6 +111,10 @@ Route::get('/lokasiziarah', [WisataController::class, 'ziarahsIndex'])->name('zi
 Route::get('/video', [WisataController::class, 'videoIndex'])->name('video.index');
 Route::get('/paketwisata', [WisataController::class, 'paketWisataIndex'])->name('paketwisata.index');
 Route::get('/sertifikasi', [WisataController::class, 'sertifikasiIndex'])->name('sertifikasi.index');
+
+Route::get('/kawasanwisata', [WisataController::class, 'kawasanIndex'])->name('kawasan.index');
+Route::get('/sertifikasi-halal', [WisataController::class, 'sertifikasiHalalIndex'])->name('sertifikasi-halal.index');
+Route::get('/galeri-investasi', [WisataController::class, 'galeriInvestasiIndex'])->name('galeri-investasi.index');
 
 
 

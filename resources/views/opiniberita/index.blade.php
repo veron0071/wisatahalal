@@ -8,93 +8,51 @@
         {{-- Judul Halaman Utama --}}
         <section>
             <h1 class="text-4xl font-bold text-jabal-green">Opini & Berita</h1>
-            <p class="text-gray-500 mt-1">Wawasan dan Informasi Terbaru Seputar Ekonomi Syariah</p>
+            <p class="text-gray-500 mt-1">Arsip Dokumen, Opini, dan Berita Terbaru</p>
             <hr class="mt-4 mb-12 border-jabal-green border-t-2">
         </section>
 
-        {{-- Grid Kartu Berita --}}
+        {{-- Grid Kartu Dokumen --}}
         <section>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                {{-- Kartu 1 (Contoh Opini) --}}
-                <div class="bg-white rounded-2xl custom-shadow overflow-hidden flex flex-col transition-transform duration-300 custom-shadow-hover hover:-translate-y-1.5">
-                    <a href="#">
-                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop" alt="Gambar Opini" class="w-full h-48 object-cover">
-                    </a>
-                    <div class="p-6 flex-grow flex flex-col">
-                        <span class="text-sm font-semibold text-jabal-light bg-jabal-light/10 px-3 py-1 rounded-full mb-3 self-start">Opini</span>
-                        <h3 class="text-xl font-bold text-jabal-green mb-2">
-                            <a href="#" class="hover:underline">Peran Ekonomi Syariah dalam Pembangunan Berkelanjutan</a>
-                        </h3>
-                        <div class="text-xs text-gray-500 mb-4">Oleh: M. Irkham Fukhuludin | {{ date('d F Y') }}</div>
-                        <p class="text-gray-600 text-sm leading-relaxed flex-grow">
-                            Ekonomi syariah menawarkan kerangka kerja yang unik untuk mencapai tujuan pembangunan berkelanjutan (SDGs) dengan prinsip keadilan dan keseimbangan...
-                        </p>
-                        <div class="mt-6 pt-4 border-t border-gray-100">
-                            <a href="#" class="font-semibold text-jabal-green hover:text-jabal-light">Baca Selengkapnya &rarr;</a>
+            {{-- DIUBAH: Menggunakan variabel $opiniBeritas dari controller --}}
+            @if ($opiniBeritas->isNotEmpty())
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    {{-- Loop untuk menampilkan setiap file dari database --}}
+                    @foreach ($opiniBeritas as $item)
+                        <div class="bg-white rounded-2xl custom-shadow p-6 flex flex-col transition-transform duration-300 custom-shadow-hover hover:-translate-y-1.5">
+                            
+                            {{-- Ikon Dokumen --}}
+                            <div class="flex-shrink-0 text-jabal-green mx-auto">
+                                <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                            </div>
+
+                            <div class="mt-4 flex-grow flex flex-col text-center">
+                                {{-- DIUBAH: Mengambil 'nama' dari database --}}
+                                <h3 class="text-xl font-bold text-jabal-green flex-grow">{{ $item->nama }}</h3>
+                                
+                                {{-- DIUBAH: Tombol untuk mengunduh 'file' dari database --}}
+                                <a href="{{ asset('storage/' . $item->file) }}" target="_blank" class="mt-6 inline-flex items-center justify-center gap-2 w-full bg-jabal-green text-white font-semibold px-6 py-2.5 rounded-full hover:bg-jabal-light transition-colors">
+                                    Unduh Dokumen
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                    @endforeach
+
                 </div>
 
-                {{-- Kartu 2 (Contoh Berita) --}}
-                <div class="bg-white rounded-2xl custom-shadow overflow-hidden flex flex-col transition-transform duration-300 custom-shadow-hover hover:-translate-y-1.5">
-                    <a href="#">
-                        <img src="https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?q=80&w=2070&auto=format&fit=crop" alt="Gambar Berita" class="w-full h-48 object-cover">
-                    </a>
-                    <div class="p-6 flex-grow flex flex-col">
-                        <span class="text-sm font-semibold text-blue-600 bg-blue-100 px-3 py-1 rounded-full mb-3 self-start">Berita</span>
-                        <h3 class="text-xl font-bold text-jabal-green mb-2">
-                            <a href="#" class="hover:underline">MES Kendal Luncurkan Program Pendampingan UMKM Halal</a>
-                        </h3>
-                        <div class="text-xs text-gray-500 mb-4">Oleh: Tim Redaksi | {{ date('d F Y', strtotime('-1 day')) }}</div>
-                        <p class="text-gray-600 text-sm leading-relaxed flex-grow">
-                            Pengurus Daerah MES Kendal hari ini secara resmi meluncurkan program pendampingan intensif bagi puluhan UMKM lokal untuk mendapatkan sertifikasi halal...
-                        </p>
-                        <div class="mt-6 pt-4 border-t border-gray-100">
-                            <a href="#" class="font-semibold text-jabal-green hover:text-jabal-light">Baca Selengkapnya &rarr;</a>
-                        </div>
-                    </div>
+                <!-- Link Paginasi -->
+                <div class="mt-12">
+                    {{ $opiniBeritas->links() }}
                 </div>
-
-                {{-- Kartu 3 (Contoh Analisis) --}}
-                <div class="bg-white rounded-2xl custom-shadow overflow-hidden flex flex-col transition-transform duration-300 custom-shadow-hover hover:-translate-y-1.5">
-                    <a href="#">
-                        <img src="https://images.unsplash.com/photo-1639755243943-3c9905689b09?q=80&w=1925&auto=format&fit=crop" alt="Gambar Analisis" class="w-full h-48 object-cover">
-                    </a>
-                    <div class="p-6 flex-grow flex flex-col">
-                        <span class="text-sm font-semibold text-purple-600 bg-purple-100 px-3 py-1 rounded-full mb-3 self-start">Analisis</span>
-                        <h3 class="text-xl font-bold text-jabal-green mb-2">
-                            <a href="#" class="hover:underline">Potensi Wakaf Produktif untuk Sektor Pendidikan di Kendal</a>
-                        </h3>
-                        <div class="text-xs text-gray-500 mb-4">Oleh: Dr. H. Abdul Ghofur, MAg | {{ date('d F Y', strtotime('-3 day')) }}</div>
-                        <p class="text-gray-600 text-sm leading-relaxed flex-grow">
-                            Wakaf produktif memiliki potensi luar biasa yang belum tergarap maksimal, khususnya untuk mendukung infrastruktur dan operasional lembaga pendidikan...
-                        </p>
-                        <div class="mt-6 pt-4 border-t border-gray-100">
-                            <a href="#" class="font-semibold text-jabal-green hover:text-jabal-light">Baca Selengkapnya &rarr;</a>
-                        </div>
-                    </div>
+            @else
+                <div class="text-center text-gray-500">
+                    <p>Belum ada opini atau berita yang dipublikasikan.</p>
                 </div>
-
-                {{-- Anda bisa menambahkan lebih banyak kartu di sini dengan loop @foreach dari database --}}
-
-            </div>
-
-            <div class="mt-12 text-center">
-                <nav class="inline-flex rounded-md shadow-sm" aria-label="Pagination">
-                    <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                      <span class="sr-only">Previous</span>
-                      <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
-                    </a>
-                    <a href="#" aria-current="page" class="z-10 bg-jabal-green/10 border-jabal-green text-jabal-green relative inline-flex items-center px-4 py-2 border text-sm font-medium"> 1 </a>
-                    <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> 2 </a>
-                    <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                      <span class="sr-only">Next</span>
-                      <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>
-                    </a>
-                </nav>
-            </div>
-            
+            @endif
         </section>
 
     </div>

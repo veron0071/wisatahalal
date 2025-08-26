@@ -146,11 +146,11 @@
                             </svg>
                         </button>
                         <ul x-show="open" x-transition class="pl-8 mt-2 space-y-2">
-                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Galery
+                            <li><a href="{{ route('galeri-investasi.index') }}" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Galery
                                     Investasi Syariah Pesantren</a></li>
-                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Kawasan Wisata
+                            <li><a href="{{ route('kawasan.index') }}" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Kawasan Wisata
                                     Halal</a></li>
-                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Sertifikasi
+                            <li><a href="{{ route('sertifikasi-halal.index') }}" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Sertifikasi
                                     Produk Halal</a></li>
                             <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Industri
                                     Keuangan Syariah</a></li>

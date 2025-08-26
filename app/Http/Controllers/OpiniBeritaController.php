@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\OpiniBerita; // 1. Pastikan Model ini di-import
 use Illuminate\Http\Request;
 
 class OpiniBeritaController extends Controller
 {
     public function index()
     {
-        // Untuk saat ini, kita hanya menampilkan view-nya.
-        // Nanti, di sinilah Anda akan mengambil data berita dari database.
-        // Contoh: $beritas = Berita::latest()->paginate(9);
-        // return view('berita.index', compact('beritas'));
+        // 2. Ambil data dari database, urutkan dari yang terbaru
+        $opiniBeritas = OpiniBerita::latest()->paginate(9);
         
-        return view('opiniberita.index');
+        // 3. Kirim data ke view 'opiniberita.index'
+        return view('opiniberita.index', compact('opiniBeritas'));
     }
 
     // Anda bisa menambahkan method 'show' di sini nanti untuk detail berita
-    // public function show($slug) { ... }
+    // public function show(OpiniBerita $opiniBerita) { ... }
 }
