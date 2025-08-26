@@ -60,4 +60,13 @@ class GaleriController extends Controller
         $galeri->delete();
         return redirect()->route('admin.galeri.index')->with('success', 'Foto berhasil dihapus.');
     }
+
+    public function galeriIndex()
+    {
+        // Ambil data foto dari database, urutkan dari yang terbaru
+        $fotos = Galeri::latest()->paginate(12); // Mengambil 12 foto per halaman
+
+        // Kirim data ke view 'galeri.index'
+        return view('galeri.index', compact('fotos'));
+    }
 }

@@ -22,6 +22,7 @@ use App\Models\Post;
 use App\Models\KawasanWisataHalal;
 use App\Models\SertifikasiHalalLink;
 use App\Models\Galeri;
+use App\Models\GisPesantren;
 use Illuminate\Http\Request;
 
 class WisataController extends Controller
@@ -306,7 +307,7 @@ class WisataController extends Controller
         // PERUBAHAN DI SINI: Mengarah ke folder 'ekosistemhalal.kawasanwisata'
         return view('ekosistemhalal.kawasanwisata.index', compact('featuredKawasan', 'kawasans'));
     }
-
+    
     public function sertifikasiHalalIndex()
     {
         // Ambil satu-satunya baris data link dari database
@@ -316,13 +317,14 @@ class WisataController extends Controller
         return view('ekosistemhalal.sertifikasiproduk.index', compact('links'));
     }
 
-        public function galeriInvestasiIndex()
+    public function galeriInvestasiIndex()
     {
-        // Ambil data foto dari database, urutkan dari yang terbaru
-        $fotos = Galeri::latest()->paginate(12); // Mengambil 12 foto per halaman
+        // Ambil data foto dari model GisPesantren, urutkan dari yang terbaru
+        $fotos = GisPesantren::latest()->paginate(12); // Mengambil 12 foto per halaman
 
         // Kirim data ke view dengan path yang benar
         return view('ekosistemhalal.galeryinvestasi.index', compact('fotos'));
     }
+
 }
 
