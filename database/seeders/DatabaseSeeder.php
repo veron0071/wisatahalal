@@ -17,11 +17,11 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             //  New Seeders
-            // VisiMisiSeeder::class,
-            // ProfilLembagaSeeder::class,
-            // PotensiKerjasamaSeeder::class,
-            // StrukturOrganisasiSeeder::class,
-            // RoadmapSeeder::class,
+            VisiMisiSeeder::class,
+            ProfilLembagaSeeder::class,
+            PotensiKerjasamaSeeder::class,
+            StrukturOrganisasiSeeder::class,
+            RoadmapSeeder::class,
             ProgramKerjaSeeder::class,
 
             // Old Seeders

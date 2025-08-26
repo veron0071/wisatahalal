@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Admin Panel')</title>
-    <link rel="icon" type="image/png" href="{{ asset('admin_wisata.png') }}">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
@@ -20,15 +20,16 @@
 
 <body class="h-full font-sans">
     <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-100">
+
         <aside
-            class="fixed inset-y-0 left-0 z-30 w-64 bg-gray-800 text-white transform transition-transform duration-300 ease-in-out md:relative md:translate-x-0"
+            class="fixed inset-y-0 left-0 z-30 w-64 bg-gray-800 text-white transform transition-transform duration-300 ease-in-out md:relative md:translate-x-0 flex flex-col"
             :class="{ 'translate-x-0': sidebarOpen, '-translate-x-full': !sidebarOpen }"
             @click.away="sidebarOpen = false" x-cloak>
-            <div class="h-16 flex items-center justify-center text-xl font-bold border-b border-gray-700">
+            <div class="h-16 flex items-center justify-center text-xl font-bold border-b border-gray-700 flex-shrink-0">
                 <a href="{{ route('admin.dashboard') }}" class="text-white hover:text-gray-300 transition-colors">Admin
                     Panel</a>
             </div>
-            <nav class="flex-1 px-2 py-4 space-y-1">
+            <nav class="flex-1 px-2 py-4 space-y-1 overflow-y-auto">
                 @php
                     $menuItems = [
                         'dashboard' => ['icon' => 'bi-grid-1x2', 'label' => 'Dashboard', 'route' => 'admin.dashboard'],
@@ -69,53 +70,76 @@
                         'publikasi' => [
                             'icon' => 'bi-book-half',
                             'label' => 'Publikasi',
+                            'route' => 'admin.publikasi.index',
+                        ],
+                        'ekosistem-halal' => [
+                            'icon' => 'bi-bounding-box-circles',
+                            'label' => 'Ekosistem Halal',
                             'children' => [
-                                'buku' => ['label' => 'Buku', 'route' => 'admin.buku.index'],
-                                'khazanah' => ['label' => 'Khazanah', 'route' => 'admin.khazanah.index'],
-                                'phbn' => ['label' => 'Peringatan Hari Besar', 'route' => 'admin.phbn.index'],
-                                'artikel-ilmiah' => [
-                                    'label' => 'Artikel Ilmiah',
-                                    'route' => 'admin.artikel-ilmiah.index',
+                                'gis-pesantren' => [
+                                    'label' => 'Galeri Pesantren',
+                                    'route' => 'admin.gis-pesantren.index',
                                 ],
-                                'materi-presentasi' => [
-                                    'label' => 'Materi Presentasi',
-                                    'route' => 'admin.materi-presentasi.index',
+                                'kawasan-wisata-halal' => [
+                                    'label' => 'Kawasan Wisata Halal',
+                                    'route' => 'admin.kawasan-wisata-halal.index',
                                 ],
-                                'laporan' => [
-                                    'label' => 'Laporan Pertanggung Jawaban',
-                                    'route' => 'admin.laporan.index',
+                                'sertifikasi-halal' => [
+                                    'label' => 'Sertifikasi Produk Halal',
+                                    'route' => 'admin.sertifikasi-halal.edit',
                                 ],
-                                // Tanda
+                                'industri-keuangan-syariah' => [
+                                    'label' => 'Industri Keuangan Syariah',
+                                    'route' => 'admin.industri-keuangan-syariah.index',
+                                ],
+                                'komunitas-investor-halal' => [
+                                    'label' => 'Komunitas Investor Halal',
+                                    'route' => 'admin.komunitas-investor-halal.edit',
+                                ],
+                                'komunitas-umkm-halal' => [
+                                    'label' => 'Komunitas UMKM Halal',
+                                    'route' => 'admin.komunitas-umkm-halal.edit',
+                                ],
                             ],
                         ],
-                        'posts' => ['icon' => 'bi-pin-angle-fill', 'label' => 'Posts', 'route' => 'admin.posts.index'],
-                        'ulama' => [
-                            'icon' => 'bi-person-lines-fill',
-                            'label' => 'Data Ulama',
-                            'route' => 'admin.ulama.index',
+                        'opini-berita' => [
+                            'icon' => 'bi-newspaper',
+                            'label' => 'Opini & Berita',
+                            'route' => 'admin.opini-berita.index',
                         ],
-                        'fasilitas' => [
-                            'icon' => 'bi-building',
-                            'label' => 'Data Fasilitas',
-                            'route' => 'admin.fasilitas.index',
-                        ],
-                        'umkm' => ['icon' => 'bi-shop', 'label' => 'Data UMKM', 'route' => 'admin.umkm.index'],
-                        'ceramahs' => [
-                            'icon' => 'bi-mic',
-                            'label' => 'Ceramah & Kajian',
-                            'route' => 'admin.ceramahs.index',
-                        ],
-                        'ziarahs' => [
-                            'icon' => 'bi-geo-alt',
-                            'label' => 'Lokasi Ziarah',
-                            'route' => 'admin.ziarahs.index',
-                        ],
-                        'videos' => ['icon' => 'bi-play-btn', 'label' => 'Video', 'route' => 'admin.videos.index'],
-                        'paketwisatas' => [
-                            'icon' => 'bi-backpack',
-                            'label' => 'Paket Wisata',
-                            'route' => 'admin.paketwisatas.index',
-                        ],
+                        // 'ekosistem-halal' => [
+                        //     'icon' => 'bi-bounding-box-circles',
+                        //     'label' => 'Ekosistem Halal',
+                        //     'route' => 'admin.ekosistem-halal.index',
+                        // ],
+                        // 'posts' => ['icon' => 'bi-pin-angle-fill', 'label' => 'Posts', 'route' => 'admin.posts.index'],
+                        // 'ulama' => [
+                        //     'icon' => 'bi-person-lines-fill',
+                        //     'label' => 'Data Ulama',
+                        //     'route' => 'admin.ulama.index',
+                        // ],
+                        // 'fasilitas' => [
+                        //     'icon' => 'bi-building',
+                        //     'label' => 'Data Fasilitas',
+                        //     'route' => 'admin.fasilitas.index',
+                        // ],
+                        // 'umkm' => ['icon' => 'bi-shop', 'label' => 'Data UMKM', 'route' => 'admin.umkm.index'],
+                        // 'ceramahs' => [
+                        //     'icon' => 'bi-mic',
+                        //     'label' => 'Ceramah & Kajian',
+                        //     'route' => 'admin.ceramahs.index',
+                        // ],
+                        // 'ziarahs' => [
+                        //     'icon' => 'bi-geo-alt',
+                        //     'label' => 'Lokasi Ziarah',
+                        //     'route' => 'admin.ziarahs.index',
+                        // ],
+                        // 'videos' => ['icon' => 'bi-play-btn', 'label' => 'Video', 'route' => 'admin.videos.index'],
+                        // 'paketwisatas' => [
+                        //     'icon' => 'bi-backpack',
+                        //     'label' => 'Paket Wisata',
+                        //     'route' => 'admin.paketwisatas.index',
+                        // ],
 
                         // Refrensi Awal, Revisi sesuai kebutuhan
                         // 'sertifikasis' => [
@@ -123,16 +147,16 @@
                         //     'label' => 'Sertifikasi Halal',
                         //     'route' => 'admin.sertifikasis.index',
                         // ],
-                        'manuskrips' => [
-                            'icon' => 'bi-journal-bookmark',
-                            'label' => 'Arsip Manuskrip',
-                            'route' => 'admin.manuskrips.index',
-                        ],
-                        'stakeholders' => [
-                            'icon' => 'bi-people',
-                            'label' => 'Stakeholders',
-                            'route' => 'admin.stakeholders.index',
-                        ],
+                        // 'manuskrips' => [
+                        //     'icon' => 'bi-journal-bookmark',
+                        //     'label' => 'Arsip Manuskrip',
+                        //     'route' => 'admin.manuskrips.index',
+                        // ],
+                        // 'stakeholders' => [
+                        //     'icon' => 'bi-people',
+                        //     'label' => 'Stakeholders',
+                        //     'route' => 'admin.stakeholders.index',
+                        // ],
                     ];
                 @endphp
 
@@ -181,16 +205,17 @@
                     @endif
                 @endforeach
             </nav>
-
         </aside>
 
         <div class="flex-1 flex flex-col overflow-hidden">
             <header
                 class="bg-white shadow-sm flex items-center justify-between md:justify-end px-4 sm:px-6 lg:px-8 py-4">
                 <button @click.stop="sidebarOpen = !sidebarOpen" class="md:hidden text-gray-500 focus:outline-none">
-                    {{-- ... svg icon ... --}}
+                    <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                    </svg>
                 </button>
-
                 <div class="flex items-center gap-x-4">
                     <a href="{{ route('admin.profile.edit') }}"
                         class="text-sm font-medium text-gray-500 hover:text-gray-700">
@@ -205,6 +230,7 @@
                     </form>
                 </div>
             </header>
+
             <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
                 @yield('content')
             </main>

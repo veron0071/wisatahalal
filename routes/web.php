@@ -35,6 +35,28 @@ use App\Http\Controllers\Admin\ProgramKerjaController as AdminProgramKerjaContro
 // Galeri Controller
 use App\Http\Controllers\Admin\GaleriController as AdminGaleriController;
 
+// Publikasi Controllers
+use App\Http\Controllers\Admin\PublikasiController;
+
+// Ekosistem Halal Controllers
+use App\Http\Controllers\Admin\GisPesantrenController;
+// use App\Http\Controllers\Admin\SejarahPerkembanganController;
+// use App\Http\Controllers\Admin\FasilitasKondisiController;
+// use App\Http\Controllers\Admin\LokasiKawasanController;
+// use App\Http\Controllers\Admin\DokumentasiKegiatanController;
+// use App\Http\Controllers\Admin\PendataanUmkmController;
+// use App\Http\Controllers\Admin\KomunitasInvestorHalalController;
+// use App\Http\Controllers\Admin\KomunitasUmkmHalalController;
+
+// Kawasan Wisata Halal Controllers
+use App\Http\Controllers\Admin\KawasanWisataHalalController;
+
+// Sertifikasi Halal Controllers
+use App\Http\Controllers\Admin\SertifikasiHalalController;
+
+// Industri Keuangan Syariah Controller
+use App\Http\Controllers\Admin\IndustriKeuanganSyariahController;
+
 // Old Controllers
 use App\Http\Controllers\Admin\ArtikelIlmiahController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -153,18 +175,47 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('potensi-kerjasama', PotensiKerjasamaController::class);
 
     // Publikasi Routes
-    Route::resource('buku', BukuController::class);
-    Route::resource('khazanah', KhazanahController::class);
-    Route::resource('phbn', PhbnController::class);
-    Route::resource('artikel-ilmiah', ArtikelIlmiahController::class);
-    Route::resource('materi-presentasi', MateriPresentasiController::class);
-    Route::resource('laporan', LaporanController::class);
+    // Route::resource('buku', BukuController::class);
+    // Route::resource('khazanah', KhazanahController::class);
+    // Route::resource('phbn', PhbnController::class);
+    // Route::resource('artikel-ilmiah', ArtikelIlmiahController::class);
+    // Route::resource('materi-presentasi', MateriPresentasiController::class);
+    // Route::resource('laporan', LaporanController::class);
+    Route::resource('publikasi', PublikasiController::class);
 
     // Program Kerja Routes
     Route::resource('program-kerja', AdminProgramKerjaController::class);
 
     // Galeri Kegiatan Routes
     Route::resource('galeri', AdminGaleriController::class);
+
+    // Ekosistem Halal Routes
+    Route::resource('gis-pesantren', GisPesantrenController::class);
+    // Route::resource('sejarah-perkembangan', SejarahPerkembanganController::class);
+    // Route::resource('fasilitas-kondisi', FasilitasKondisiController::class);
+    // Route::resource('lokasi-kawasan', LokasiKawasanController::class);
+    // Route::resource('dokumentasi-kegiatan', DokumentasiKegiatanController::class);
+    Route::delete('/kawasan-wisata-halal/dokumentasi/{dokumentasi}', [\App\Http\Controllers\Admin\KawasanWisataHalalController::class, 'destroyDokumentasi'])->name('kawasan-wisata-halal.dokumentasi.destroy');
+    Route::resource('kawasan-wisata-halal', \App\Http\Controllers\Admin\KawasanWisataHalalController::class);
+    Route::get('/pendataan-umkm', [PendataanUmkmController::class, 'edit'])->name('pendataan-umkm.edit');
+    Route::patch('/pendataan-umkm', [PendataanUmkmController::class, 'update'])->name('pendataan-umkm.update');
+
+    // Sertifikasi Halal Routes
+    Route::get('/sertifikasi-halal', [SertifikasiHalalController::class, 'edit'])->name('sertifikasi-halal.edit');
+    Route::patch('/sertifikasi-halal', [SertifikasiHalalController::class, 'update'])->name('sertifikasi-halal.update');
+
+    // Industri Keuangan Syariah Routes
+    Route::resource('industri-keuangan-syariah', IndustriKeuanganSyariahController::class);
+
+    Route::get('/komunitas-investor-halal', [\App\Http\Controllers\Admin\KomunitasInvestorHalalController::class, 'edit'])->name('komunitas-investor-halal.edit');
+    Route::patch('/komunitas-investor-halal', [\App\Http\Controllers\Admin\KomunitasInvestorHalalController::class, 'update'])->name('komunitas-investor-halal.update');
+
+    Route::get('/komunitas-umkm-halal', [\App\Http\Controllers\Admin\KomunitasUmkmHalalController::class, 'edit'])->name('komunitas-umkm-halal.edit');
+    Route::patch('/komunitas-umkm-halal', [\App\Http\Controllers\Admin\KomunitasUmkmHalalController::class, 'update'])->name('komunitas-umkm-halal.update');
+
+    // Opini & Berita
+    Route::resource('opini-berita', \App\Http\Controllers\Admin\OpiniBeritaController::class);
+
 
     Route::resource('posts', PostController::class);
     Route::resource('ulama', UlamaController::class);
