@@ -20,6 +20,9 @@ use App\Models\Kajian;
 use App\Models\Stakeholder;
 use App\Models\Video;
 use App\Models\Post;
+use App\Models\KawasanWisataHalal;
+use App\Models\SertifikasiHalalLink;
+use App\Models\Galeri;
 use Illuminate\Http\Request;
 
 class WisataController extends Controller
@@ -307,4 +310,38 @@ class WisataController extends Controller
     {
         return view('program.index');
     }
+
+    public function kawasanIndex()
+    {
+        $featuredKawasan = KawasanWisataHalal::with('dokumentasi')->latest()->first();
+
+        $kawasans = KawasanWisataHalal::with('dokumentasi')
+            ->when($featuredKawasan, function ($query) use ($featuredKawasan) {
+                return $query->where('id', '!=', $featuredKawasan->id);
+            })
+            ->latest()
+            ->paginate(8); 
+
+        // PERUBAHAN DI SINI: Mengarah ke folder 'ekosistemhalal.kawasanwisata'
+        return view('ekosistemhalal.kawasanwisata.index', compact('featuredKawasan', 'kawasans'));
+    }
+
+    public function sertifikasiHalalIndex()
+    {
+        // Ambil satu-satunya baris data link dari database
+        $links = SertifikasiHalalLink::first();
+        
+        // Kirim data ke view 'sertifikasi-halal.index'
+        return view('ekosistemhalal.sertifikasiproduk.index', compact('links'));
+    }
+
+        public function galeriInvestasiIndex()
+    {
+        // Ambil data foto dari database, urutkan dari yang terbaru
+        $fotos = Galeri::latest()->paginate(12); // Mengambil 12 foto per halaman
+
+        // Kirim data ke view dengan path yang benar
+        return view('ekosistemhalal.galeryinvestasi.index', compact('fotos'));
+    }
 }
+

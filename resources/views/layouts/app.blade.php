@@ -126,7 +126,6 @@
                         </button>
                     </li>
 
-
                     <li x-data="{ open: false }">
                         <button @click="open = !open"
                             class="flex items-center justify-between w-full p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100">
@@ -149,11 +148,14 @@
                             </svg>
                         </button>
                         <ul x-show="open" x-transition class="pl-8 mt-2 space-y-2">
-                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Galery
+                            <li><a href="{{ route('galeri-investasi.index') }}"
+                                    class="block p-2 text-sm rounded-lg hover:bg-gray-50">Galery
                                     Investasi Syariah Pesantren</a></li>
-                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Kawasan Wisata
+                            <li><a href="{{ route('kawasan.index') }}"
+                                    class="block p-2 text-sm rounded-lg hover:bg-gray-50">Kawasan Wisata
                                     Halal</a></li>
-                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Sertifikasi
+                            <li><a href="{{ route('sertifikasi-halal.index') }}"
+                                    class="block p-2 text-sm rounded-lg hover:bg-gray-50">Sertifikasi
                                     Produk Halal</a></li>
                             <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Industri
                                     Keuangan Syariah</a></li>
@@ -169,21 +171,9 @@
                         <button @click="open = !open"
                             class="flex items-center justify-between w-full p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100">
                             {{-- PERUBAHAN DI SINI --}}
-                            <span class="ml-3 flex-grow text-left">Opini & Berita</span>
-                            <svg class="w-4 h-4 transition-transform duration-200" :class="{ 'rotate-180': open }"
-                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M19 9l-7 7-7-7"></path>
-                            </svg>
+                            <span class="ml-3 flex-grow text-left"><a href="{{ route('berita.index') }}">Opini &
+                                    Berita</a></span>
                         </button>
-                        <ul x-show="open" x-transition class="pl-8 mt-2 space-y-2">
-                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Press Release
-                                    PkM Unwahas dan PD MES Kendal di Jabal Nur Kaliwungu Selatan</a></li>
-                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Press Release
-                                    RMS Chapter Kendal - PD MES Kendal</a></li>
-                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Press Release
-                                    PD MES Kendal Gelar Workshop Literasi dan Inklusifitas Keuangan Syariah</a></li>
-                        </ul>
                     </li>
 
 

@@ -7,6 +7,8 @@ use App\Http\Controllers\WisataController;
 use App\Http\Controllers\TentangKamiController;
 use App\Http\Controllers\ProgramKerjaController;
 use App\Http\Controllers\GaleriController;
+use App\Http\Controllers\OpiniBeritaController;
+use App\Http\Controllers\PublikasiController;
 
 // Controllers for Authentication and Profile (from Breeze)
 use App\Http\Controllers\ProfileController;
@@ -59,7 +61,6 @@ use App\Http\Controllers\Admin\LokasiZiarahController;
 use App\Http\Controllers\Admin\PelatihanController;
 use App\Http\Controllers\Admin\ArtikelController;
 use App\Http\Controllers\Admin\KajianController;
-use App\Http\Controllers\Admin\PotensiKerjasamaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,6 +93,14 @@ Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri.index');
 
 Route::get('/publikasi', [\App\Http\Controllers\WisataController::class, 'publikasiIndex'])->name('publikasi.index');
 
+Route::get('/ulama', [WisataController::class, 'ulamaIndex'])->name('ulama.index');
+Route::get('/ulama/{ulama}', [WisataController::class, 'ulamaShow'])->name('ulama.show');
+Route::get('/fasilitas', [WisataController::class, 'fasilitasIndex'])->name('fasilitas.index');
+Route::get('/fasilitas/{fasilitas}', [WisataController::class, 'fasilitasShow'])->name('fasilitas.show');
+Route::get('/umkm', [WisataController::class, 'umkmIndex'])->name('umkm.index');
+Route::get('/program', [WisataController::class, 'programIndex'])->name('program.index');
+Route::get('/opiniberita', [OpiniBeritaController::class, 'index'])->name('berita.index');
+Route::get('/publikasi', [PublikasiController::class, 'index'])->name('publikasi.index');
 
 // Route::get('/ulama', [WisataController::class, 'ulamaIndex'])->name('ulama.index');
 // Route::get('/ulama/{ulama}', [WisataController::class, 'ulamaShow'])->name('ulama.show');
@@ -110,6 +119,10 @@ Route::get('/publikasi', [\App\Http\Controllers\WisataController::class, 'publik
 // Route::get('/video', [WisataController::class, 'videoIndex'])->name('video.index');
 // Route::get('/paketwisata', [WisataController::class, 'paketWisataIndex'])->name('paketwisata.index');
 // Route::get('/sertifikasi', [WisataController::class, 'sertifikasiIndex'])->name('sertifikasi.index');
+
+Route::get('/kawasanwisata', [WisataController::class, 'kawasanIndex'])->name('kawasan.index');
+Route::get('/sertifikasi-halal', [WisataController::class, 'sertifikasiHalalIndex'])->name('sertifikasi-halal.index');
+Route::get('/galeri-investasi', [WisataController::class, 'galeriInvestasiIndex'])->name('galeri-investasi.index');
 
 
 
