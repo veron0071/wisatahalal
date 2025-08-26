@@ -7,6 +7,8 @@ use App\Http\Controllers\WisataController;
 use App\Http\Controllers\TentangKamiController;
 use App\Http\Controllers\ProgramKerjaController;
 use App\Http\Controllers\GaleriController;
+use App\Http\Controllers\OpiniBeritaController;
+use App\Http\Controllers\PublikasiController;
 
 // Controllers for Authentication and Profile (from Breeze)
 use App\Http\Controllers\ProfileController;
@@ -52,7 +54,6 @@ use App\Http\Controllers\Admin\LokasiZiarahController;
 use App\Http\Controllers\Admin\PelatihanController;
 use App\Http\Controllers\Admin\ArtikelController;
 use App\Http\Controllers\Admin\KajianController;
-use App\Http\Controllers\Admin\PotensiKerjasamaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,6 +91,8 @@ Route::get('/fasilitas', [WisataController::class, 'fasilitasIndex'])->name('fas
 Route::get('/fasilitas/{fasilitas}', [WisataController::class, 'fasilitasShow'])->name('fasilitas.show');
 Route::get('/umkm', [WisataController::class, 'umkmIndex'])->name('umkm.index');
 Route::get('/program', [WisataController::class, 'programIndex'])->name('program.index');
+Route::get('/opiniberita', [OpiniBeritaController::class, 'index'])->name('berita.index');
+Route::get('/publikasi', [PublikasiController::class, 'index'])->name('publikasi.index');
 
 Route::get('/berita', [WisataController::class, 'beritaIndex'])->name('posts.berita');
 Route::get('/api/berita', [WisataController::class, 'loadMoreBerita'])->name('api.berita.loadmore');

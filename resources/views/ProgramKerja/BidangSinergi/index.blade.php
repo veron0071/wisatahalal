@@ -42,7 +42,7 @@
                         </tr>
                         <tr class="bg-white">
                             <td class="px-6 py-4">3. Audiensi Kerjasama Wartawan</td>
-                            <td class="px-6 py-4">Melakukan Penawaran Kerjasama dengan Organisasi Wartawan di Daerah Kendal.</td>
+                            <td class="px-6 py-4">Melakukan Penawaran Kerjasama dengan Organisasi Wartawan di Daerah Kendall.</td>
                         </tr>
                     </tbody>
                 </table>
