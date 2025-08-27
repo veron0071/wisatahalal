@@ -69,6 +69,7 @@
                             <input name="foto" id="foto" type="file"
                                 class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none file:mr-4 file:py-2 file:px-4 file:rounded-l-lg file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
                         </div>
+                        <p class="mt-1 text-xs text-gray-500">Maksimal 2MB. Kosongkan jika tidak ingin mengubah foto.</p>
                         @if ($setting->foto)
                             <div class="mt-4">
                                 <p class="text-sm text-gray-500">Foto saat ini:</p>
