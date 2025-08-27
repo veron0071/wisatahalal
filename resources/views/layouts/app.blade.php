@@ -51,7 +51,9 @@
 
         <aside id="sidebar"
             class="fixed top-0 left-0 z-50 w-64 h-screen bg-white border-r p-6 transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
-            <a href="{{ route('home') }}" class="text-xl font-bold text-jabal-green">Wisata Jabal Nur</a>
+            <a href="{{ route('home') }}">
+                <img src="{{ asset('images/logomes.png') }}" alt="Logo MES Kendal" class="h-10 w-auto">
+            </a>
             <nav class="mt-8 flex-grow overflow-y-auto">
                 <ul class="space-y-2">
 
@@ -201,7 +203,9 @@
                                 d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
-                    <a href="{{ route('home') }}" class="text-xl font-bold text-jabal-green">Wisata Jabal Nur</a>
+                    <a href="{{ route('home') }}">
+                        <img src="{{ asset('images/logomes.png') }}" alt="Logo MES Kendal" class="h-10 w-auto">
+                    </a>
                 </div>
             </header>
 
