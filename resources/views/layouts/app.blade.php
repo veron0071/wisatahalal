@@ -157,11 +157,11 @@
                             <li><a href="{{ route('sertifikasi-halal.index') }}"
                                     class="block p-2 text-sm rounded-lg hover:bg-gray-50">Sertifikasi
                                     Produk Halal</a></li>
-                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Industri
+                            <li><a href="{{ route('industri-keuangan-syariah.index') }}" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Industri
                                     Keuangan Syariah</a></li>
-                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Komunitas
+                            <li><a href="{{ route('komunitas-investor.index') }}" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Komunitas
                                     Investor Halal Kendal</a></li>
-                            <li><a href="#" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Komunitas UMKM
+                            <li><a href="{{ route('komunitas-umkm.index') }}" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Komunitas UMKM
                                     Halal Kendal</a></li>
                         </ul>
                     </li>

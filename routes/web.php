@@ -124,6 +124,9 @@ Route::get('/publikasi', [\App\Http\Controllers\WisataController::class, 'publik
 Route::get('/kawasanwisata', [WisataController::class, 'kawasanIndex'])->name('kawasan.index');
 Route::get('/sertifikasi-halal', [WisataController::class, 'sertifikasiHalalIndex'])->name('sertifikasi-halal.index');
 Route::get('/galeri-investasi', [WisataController::class, 'galeriInvestasiIndex'])->name('galeri-investasi.index');
+Route::get('/industri-keuangan-syariah', [WisataController::class, 'industriKeuanganSyariahIndex'])->name('industri-keuangan-syariah.index');
+Route::get('/komunitas-investor-halal', [WisataController::class, 'komunitasInvestorIndex'])->name('komunitas-investor.index');
+Route::get('/komunitas-umkm-halal', [WisataController::class, 'komunitasUmkmIndex'])->name('komunitas-umkm.index');
 
 
 

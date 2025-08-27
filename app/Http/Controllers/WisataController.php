@@ -23,6 +23,10 @@ use App\Models\Post;
 use App\Models\KawasanWisataHalal;
 use App\Models\SertifikasiHalalLink;
 use App\Models\Galeri;
+use App\Models\GisPesantren;
+use App\Models\IndustriKeuanganSyariah;
+use App\Models\KomunitasInvestorHalal;
+use App\Models\KomunitasUmkmHalal;
 use Illuminate\Http\Request;
 
 class WisataController extends Controller
@@ -324,7 +328,7 @@ class WisataController extends Controller
         // PERUBAHAN DI SINI: Mengarah ke folder 'ekosistemhalal.kawasanwisata'
         return view('ekosistemhalal.kawasanwisata.index', compact('featuredKawasan', 'kawasans'));
     }
-
+    
     public function sertifikasiHalalIndex()
     {
         // Ambil satu-satunya baris data link dari database
@@ -334,13 +338,42 @@ class WisataController extends Controller
         return view('ekosistemhalal.sertifikasiproduk.index', compact('links'));
     }
 
-        public function galeriInvestasiIndex()
+    public function galeriInvestasiIndex()
     {
-        // Ambil data foto dari database, urutkan dari yang terbaru
-        $fotos = Galeri::latest()->paginate(12); // Mengambil 12 foto per halaman
+        // Ambil data foto dari model GisPesantren, urutkan dari yang terbaru
+        $fotos = GisPesantren::latest()->paginate(12); // Mengambil 12 foto per halaman
 
         // Kirim data ke view dengan path yang benar
         return view('ekosistemhalal.galeryinvestasi.index', compact('fotos'));
     }
+
+    public function industriKeuanganSyariahIndex()
+    {
+        // Ambil data dari database, urutkan dari yang terbaru
+        $items = IndustriKeuanganSyariah::latest()->paginate(12); // Mengambil 12 item per halaman
+
+        // Kirim data ke view dengan path yang benar
+        return view('ekosistemhalal.industrikeuangan.index', compact('items'));
+    }
+
+    public function komunitasInvestorIndex()
+    {
+        // Ambil satu-satunya baris data link dari database
+        $link = KomunitasInvestorHalal::first();
+        
+        // PERUBAHAN DI SINI: Mengarah ke folder 'ekosistemhalal.komunitasinvestor'
+        return view('ekosistemhalal.komunitasinvestor.index', compact('link'));
+    }
+
+    public function komunitasUmkmIndex()
+    {
+        // Ambil satu-satunya baris data link dari database
+        $link = KomunitasUmkmHalal::first();
+        
+        // PERUBAHAN DI SINI: Mengarah ke folder 'ekosistemhalal.komunitasumkm'
+        return view('ekosistemhalal.komunitasumkm.index', compact('link'));
+    }
+
+
 }
 
