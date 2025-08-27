@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\ProfilLembagaController;
 use App\Http\Controllers\Admin\VisiMisiController;
 use App\Http\Controllers\Admin\StrukturOrganisasiController;
 use App\Http\Controllers\Admin\RoadmapController;
+use App\Http\Controllers\Admin\PotensiKerjasamaController;
 
 // Program Kerja Controller
 use App\Http\Controllers\Admin\ProgramKerjaController as AdminProgramKerjaController;
@@ -100,7 +101,7 @@ Route::get('/fasilitas/{fasilitas}', [WisataController::class, 'fasilitasShow'])
 Route::get('/umkm', [WisataController::class, 'umkmIndex'])->name('umkm.index');
 Route::get('/program', [WisataController::class, 'programIndex'])->name('program.index');
 Route::get('/opiniberita', [OpiniBeritaController::class, 'index'])->name('berita.index');
-Route::get('/publikasi', [PublikasiController::class, 'index'])->name('publikasi.index');
+Route::get('/publikasi', [\App\Http\Controllers\WisataController::class, 'publikasiIndex'])->name('publikasi.index');
 
 // Route::get('/ulama', [WisataController::class, 'ulamaIndex'])->name('ulama.index');
 // Route::get('/ulama/{ulama}', [WisataController::class, 'ulamaShow'])->name('ulama.show');

@@ -3,6 +3,7 @@
 @section('title', 'Publikasi')
 
 @section('content')
+
     <div class="container mx-auto px-6 md:px-12 py-12">
 
         {{-- Judul Halaman Utama --}}
@@ -15,32 +16,44 @@
         {{-- Konten dibungkus dalam satu kartu putih --}}
         <section class="bg-white rounded-2xl custom-shadow p-6 md:p-8">
 
-            {{-- Filter Dropdown --}}
             @if ($kategoris->isNotEmpty())
                 <div class="mb-8 flex flex-col items-center">
-                    <label for="kategori_filter" class="text-lg font-semibold text-gray-700 mb-3">Tampilkan Kategori:</label>
-                    <form action="{{ route('publikasi.index') }}" method="GET" class="inline-block">
-                        <div class="relative">
-                            <select name="kategori" id="kategori_filter" onchange="this.form.submit()"
-                                class="appearance-none block w-64 rounded-lg border-2 border-gray-300 bg-white py-2.5 pl-4 pr-10 text-base shadow-lg focus:border-jabal-green focus:outline-none focus:ring-jabal-green sm:text-sm transition">
-                                @foreach ($kategoris as $kategori)
-                                    <option value="{{ $kategori }}"
-                                        {{ $selectedKategori == $kategori ? 'selected' : '' }}>
-                                        {{ $kategori }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            <div
-                                class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-700">
-                                <svg class="h-5 w-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path
-                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+                    <label for="kategori_filter" class="text-lg font-semibold text-gray-700 mb-3">
+                        Tampilkan Kategori:
+                    </label>
+
+                    <form action="{{ route('publikasi.index') }}" method="GET" class="inline-block w-64">
+                        <div x-data="{ open: false, selected: '{{ $selectedKategori }}' }" class="relative">
+                            {{-- Tombol Dropdown --}}
+                            <button type="button" @click="open = !open"
+                                class="w-full flex justify-between items-center rounded-xl border border-gray-300 bg-white px-4 py-3 shadow-md
+                           text-gray-700 font-medium focus:outline-none focus:ring-2 focus:ring-jabal-green/30 transition">
+                                <span x-text="selected"></span>
+                                <svg class="h-5 w-5 text-jabal-green transform transition-transform"
+                                    :class="open ? 'rotate-180' : 'rotate-0'" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                                 </svg>
-                            </div>
+                            </button>
+
+                            {{-- Pilihan --}}
+                            <ul x-show="open" @click.outside="open = false"
+                                class="absolute z-10 mt-2 w-full bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+                                @foreach ($kategoris as $kategori)
+                                    <li>
+                                        <button type="submit" name="kategori" value="{{ $kategori }}"
+                                            @click="selected = '{{ $kategori }}'; open = false"
+                                            class="w-full text-left px-4 py-2 text-gray-700 hover:bg-jabal-green hover:text-white transition">
+                                            {{ $kategori }}
+                                        </button>
+                                    </li>
+                                @endforeach
+                            </ul>
                         </div>
                     </form>
                 </div>
             @endif
+
 
             {{-- Konten Dinamis Berdasarkan Kategori --}}
             @if ($publikasiItems->isNotEmpty())
