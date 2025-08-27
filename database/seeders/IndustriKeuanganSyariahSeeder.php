@@ -19,14 +19,26 @@ class IndustriKeuanganSyariahSeeder extends Seeder
                 'foto' => '1. Multifinance Syariah.jpg',
                 'judul' => 'Multifinance Syariah',
             ],
-            // [
-            //     'foto' => 'asuransi_takaful.png',
-            //     'judul' => 'Asuransi Syariah (Takaful)',
-            // ],
-            // [
-            //     'foto' => 'pasar_modal_syariah.jpg',
-            //     'judul' => 'Pasar Modal Syariah',
-            // ],
+            [
+                'foto' => '2. Workshop Literasi Keuangan Syariah.png',
+                'judul' => 'Workshop Literasi Keuangan Syariah',
+            ],
+            [
+                'foto' => '3. FLWF Chapter Kendal New.jpg',
+                'judul' => 'FLWF Chapter Kendal New',
+            ],
+            [
+                'foto' => '4. Ngopi Investor Halal Kendal new.jpg',
+                'judul' => 'Ngopi Investor Halal Kendal new',
+            ],
+            [
+                'foto' => '5. WPMS Chapter Kendal.png',
+                'judul' => 'WPMS Chapter Kendal',
+            ],
+            [
+                'foto' => '6. Semnas dan Launching Gis Pesantren.jpg',
+                'judul' => 'Semnas dan Launching Gis Pesantren',
+            ],
         ];
 
         $sumberPath = database_path('seeders/dummy_images/industri_keuangan_syariah');
