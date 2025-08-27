@@ -14,6 +14,7 @@ use App\Http\Controllers\PublikasiController;
 use App\Http\Controllers\ProfileController;
 
 // Controllers for Admin Panel
+use App\Http\Controllers\Admin\HomeSettingController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 
 // Publikasi Controllers
@@ -68,9 +69,11 @@ use App\Http\Controllers\Admin\KajianController;
 | Rute Publik (Untuk Pengunjung)
 |--------------------------------------------------------------------------
 */
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+// Route::get('/', function () {
+//     return view('home');
+// })->name('home');
+
+Route::get('/', [WisataController::class, 'homeIndex'])->name('home');
 
 Route::prefix('tentangkami')->name('tentang.')->group(function () {
     Route::get('/profil-mes', [TentangKamiController::class, 'profil'])->name('profil');
@@ -163,6 +166,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
     Route::get('/profile', [AdminProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [AdminProfileController::class, 'update'])->name('profile.update');
+    Route::get('/pengaturan-home', [HomeSettingController::class, 'edit'])->name('home-setting.edit');
+    Route::patch('/pengaturan-home', [HomeSettingController::class, 'update'])->name('home-setting.update');
 
     // Tentang Kami Routes
     Route::get('/profil-lembaga', [ProfilLembagaController::class, 'edit'])->name('profil-lembaga.edit');

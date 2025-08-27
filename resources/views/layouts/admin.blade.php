@@ -34,6 +34,12 @@
                     $menuItems = [
                         'dashboard' => ['icon' => 'bi-grid-1x2', 'label' => 'Dashboard', 'route' => 'admin.dashboard'],
 
+                        'home-setting' => [
+                            'icon' => 'bi-house',
+                            'label' => 'Pengaturan Home',
+                            'route' => 'admin.home-setting.edit',
+                        ],
+
                         'tentang-kami' => [
                             'icon' => 'bi-info-circle',
                             'label' => 'Tentang Kami',

@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HomeSetting;
 use App\Models\ProfilLembaga;
+use App\Models\VisiMisi;
+use App\Models\StrukturOrganisasi;
+use App\Models\Roadmap;
+use App\Models\PotensiKerjasama;
 use App\Models\Publikasi;
 use App\Models\Ulama;
 use App\Models\Fasilitas;
@@ -35,6 +40,26 @@ class WisataController extends Controller
     private const PAGINATION_COUNT = 9;
 
     // =================== POST  ===================
+    public function homeIndex()
+    {
+
+        // Kode di bawah ini tidak akan dieksekusi untuk sementara
+        $homeSetting = HomeSetting::find(1);
+        $profil = ProfilLembaga::find(1);
+        $visiMisi = VisiMisi::find(1);
+        $struktur = StrukturOrganisasi::find(1);
+        $roadmap = Roadmap::find(1);
+
+        return view('home', compact(
+            'homeSetting',
+            'profil',
+            'visiMisi',
+            'struktur',
+            'roadmap'
+        ));
+    }
+
+
     public function beritaIndex()
     {
         // $featuredPost = \App\Models\Post::where('kategori', 'Berita')->latest()->first();
