@@ -34,23 +34,6 @@ class WisataController extends Controller
 
     private const PAGINATION_COUNT = 9;
 
-
-    // app/Http/Controllers/WisataController.php
-
-    public function publikasiIndex(Request $request)
-    {
-        $kategoris = Publikasi::select('kategori')->distinct()->pluck('kategori');
-
-        $selectedKategori = $request->query('kategori', 'Buku');
-
-        $publikasiItems = Publikasi::where('kategori', $selectedKategori)
-                                ->latest()
-                                ->get();
-
-        return view('publikasi.index', compact('kategoris', 'selectedKategori', 'publikasiItems'));
-    }
-
-
     // =================== POST  ===================
     public function beritaIndex()
     {
@@ -328,7 +311,7 @@ class WisataController extends Controller
         // PERUBAHAN DI SINI: Mengarah ke folder 'ekosistemhalal.kawasanwisata'
         return view('ekosistemhalal.kawasanwisata.index', compact('featuredKawasan', 'kawasans'));
     }
-    
+
     public function sertifikasiHalalIndex()
     {
         // Ambil satu-satunya baris data link dari database
@@ -360,7 +343,7 @@ class WisataController extends Controller
     {
         // Ambil satu-satunya baris data link dari database
         $link = KomunitasInvestorHalal::first();
-        
+
         // PERUBAHAN DI SINI: Mengarah ke folder 'ekosistemhalal.komunitasinvestor'
         return view('ekosistemhalal.komunitasinvestor.index', compact('link'));
     }
@@ -369,7 +352,7 @@ class WisataController extends Controller
     {
         // Ambil satu-satunya baris data link dari database
         $link = KomunitasUmkmHalal::first();
-        
+
         // PERUBAHAN DI SINI: Mengarah ke folder 'ekosistemhalal.komunitasumkm'
         return view('ekosistemhalal.komunitasumkm.index', compact('link'));
     }
