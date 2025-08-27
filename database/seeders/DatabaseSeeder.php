@@ -17,27 +17,27 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             //  Tentang Kami Seeders
-            // ProfilLembagaSeeder::class,
-            // VisiMisiSeeder::class,
-            // StrukturOrganisasiSeeder::class,
-            // RoadmapSeeder::class,
-            // PotensiKerjasamaSeeder::class,
+            ProfilLembagaSeeder::class,
+            VisiMisiSeeder::class,
+            StrukturOrganisasiSeeder::class,
+            RoadmapSeeder::class,
+            PotensiKerjasamaSeeder::class,
 
             // Program Kerja Seeder
-            // ProgramKerjaSeeder::class,
+            ProgramKerjaSeeder::class,
 
             // Galeri Kegiatan Seeder
-            // GaleriKegiatanSeeder::class,
+            GaleriKegiatanSeeder::class,
 
             // Publikasi Seeder
-            // PublikasiSeeder::class,
+            PublikasiSeeder::class,
 
             // Ekosistem Halal Seeder
-            // GisPesantrenSeeder::class,
-            // SertifikasiHalalLinkSeeder::class,
-            // IndustriKeuanganSyariahSeeder::class,
-            // KomunitasInvestorHalalSeeder::class,
-            // KomunitasUmkmHalalSeeder::class,
+            GisPesantrenSeeder::class,
+            SertifikasiHalalLinkSeeder::class,
+            IndustriKeuanganSyariahSeeder::class,
+            KomunitasInvestorHalalSeeder::class,
+            KomunitasUmkmHalalSeeder::class,
 
             // Opini & Berita Seeder
             OpiniBeritaSeeder::class,

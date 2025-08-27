@@ -19,14 +19,26 @@ class GisPesantrenSeeder extends Seeder
                 'foto' => '1. RPMS Chapter 3.JPG',
                 'keterangan' => 'RPMS Chapter 3',
             ],
-            // [
-            //     'foto' => '.png',
-            //     'keterangan' => '',
-            // ],
-            // [
-            //     'foto' => '.jpg',
-            //     'keterangan' => '',
-            // ],
+            [
+                'foto' => '2. Rpms Chapter 2.png',
+                'keterangan' => 'RPMS Chapter 2',
+            ],
+            [
+                'foto' => '3. Rpms Chapter 1.png',
+                'keterangan' => 'RPMS Chapter 1',
+            ],
+            [
+                'foto' => '4. Rpms Chapter 3.png',
+                'keterangan' => 'RPMS Chapter 3',
+            ],
+            [
+                'foto' => '5. Rpms Chapter 1.png',
+                'keterangan' => 'RPMS Chapter 1',
+            ],
+            [
+                'foto' => '6. Rpms Chapter 1.png',
+                'keterangan' => 'RPMS Chapter 1',
+            ],
         ];
 
         $sumberPath = database_path('seeders/dummy_images/gis_pesantren');
