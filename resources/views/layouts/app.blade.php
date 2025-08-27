@@ -78,6 +78,9 @@
                             <li><a href="{{ route('tentang.potensi') }}"
                                     class="block p-2 text-sm rounded-lg hover:bg-gray-50">Sebaran Potensi Kerjasama</a>
                             </li>
+                            <li><a href="{{ route('login') }}"
+                                    class="block p-2 text-sm rounded-lg hover:bg-gray-50">Login Admin</a>
+                            </li>
                         </ul>
                     </li>
 
