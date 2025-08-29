@@ -30,22 +30,22 @@ class PublikasiSeeder extends Seeder
             ],
             [
                 'kategori' => 'Khazanah',
-                'nama' => '2. Khazanah',
+                'nama' => 'Khazanah 2',
                 'file' => '2.Khazanah.JPG',
             ],
             [
                 'kategori' => 'Khazanah',
-                'nama' => '3. Khazanah',
+                'nama' => 'Khazanah 3',
                 'file' => '3.Khazanah.JPG',
             ],
             [
                 'kategori' => 'Khazanah',
-                'nama' => '4. Khazanah',
+                'nama' => 'Khazanah 4',
                 'file' => '4.Khazanah.JPG',
             ],
             [
                 'kategori' => 'Khazanah',
-                'nama' => '5. Khazanah',
+                'nama' => 'Khazanah 5',
                 'file' => '5.Khazanah.JPG',
             ],
 
@@ -216,7 +216,7 @@ class PublikasiSeeder extends Seeder
             ],
             [
                 'kategori' => 'Peringatan Hari Besar',
-                'nama' => 'Tahun Baru',
+                'nama' => 'Tahun Baru 2022',
                 'file' => 'TahunBaru.JPG',
             ],
             
