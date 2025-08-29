@@ -1,17 +1,17 @@
 @extends('layouts.admin')
-@section('title', 'Galeri Investasi Syariah Pesantren')
+@section('title', 'Data Opini')
 
 @section('content')
     <div class="px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
-                <h1 class="text-xl font-semibold text-gray-900">GIS Pesantren</h1>
-                <p class="mt-2 text-sm text-gray-700">Kelola semua foto untuk Galeri Investasi Syariah Pesantren.</p>
+                <h1 class="text-xl font-semibold text-gray-900">Data Opini & Berita</h1>
+                <p class="mt-2 text-sm text-gray-700">Kelola semua data opini yang telah dipublikasikan.</p>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <a href="{{ route('admin.gis-pesantren.create') }}"
+                <a href="{{ route('admin.opini.create') }}"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700">
-                    Unggah Foto
+                    Tambah
                 </a>
             </div>
         </div>
@@ -44,29 +44,36 @@
                                         class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Foto
                                     </th>
                                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                        Keterangan</th>
+                                        Judul</th>
                                     <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6"><span
                                             class="sr-only">Aksi</span></th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200 bg-white">
-                                @forelse ($fotos as $foto)
+                                @forelse ($opinis as $item)
                                     <tr>
                                         <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
-                                            <img class="h-12 w-20 rounded-md object-cover"
-                                                src="{{ asset('storage/' . $foto->foto) }}" alt="{{ $foto->keterangan }}">
+                                            @if ($item->foto)
+                                                <img class="h-12 w-20 rounded-md object-cover"
+                                                    src="{{ asset('storage/' . $item->foto) }}" alt="{{ $item->judul }}">
+                                            @else
+                                                <span class="text-xs text-gray-400">Tidak ada foto</span>
+                                            @endif
                                         </td>
                                         <td class="px-3 py-4 text-sm font-medium text-gray-900">
-                                            {{ $foto->keterangan }}
+                                            {{ Str::limit($item->judul, 60) }}
                                         </td>
                                         <td
                                             class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                             <div class="flex justify-end gap-x-4">
-                                                <a href="{{ route('admin.gis-pesantren.edit', $foto->id) }}"
+                                                @if ($item->file)
+                                                    <a href="{{ asset('storage/' . $item->file) }}" target="_blank"
+                                                        class="text-green-600 hover:text-green-900">Unduh</a>
+                                                @endif
+                                                <a href="{{ route('admin.opini.edit', $item->id) }}"
                                                     class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                                <form action="{{ route('admin.gis-pesantren.destroy', $foto->id) }}"
-                                                    method="POST"
-                                                    onsubmit="return confirm('Yakin ingin menghapus foto ini?')">
+                                                <form action="{{ route('admin.opini.destroy', $item->id) }}" method="POST"
+                                                    onsubmit="return confirm('Yakin ingin menghapus data ini?')">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit"
@@ -78,7 +85,7 @@
                                 @empty
                                     <tr>
                                         <td colspan="3" class="px-3 py-4 text-center text-sm text-gray-500">
-                                            Belum ada foto di galeri.
+                                            Belum ada data opini & berita.
                                         </td>
                                     </tr>
                                 @endforelse
@@ -86,7 +93,7 @@
                         </table>
                     </div>
                     <div class="mt-4">
-                        {{ $fotos->links('vendor.pagination.tailwind-admin') }}
+                        {{ $opinis->links('vendor.pagination.tailwind-admin') }}
                     </div>
                 </div>
             </div>

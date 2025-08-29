@@ -84,7 +84,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="mt-4">{{ $publikasis->links() }}</div>
+                    <div class="mt-4">{{ $publikasis->links('vendor.pagination.tailwind-admin') }}</div>
                 </div>
             </div>
         </div>

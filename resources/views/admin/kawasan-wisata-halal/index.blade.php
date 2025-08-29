@@ -78,7 +78,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="mt-4">{{ $kawasans->links() }}</div>
+                    <div class="mt-4">{{ $kawasans->links('vendor.pagination.tailwind-admin') }}</div>
                 </div>
             </div>
         </div>

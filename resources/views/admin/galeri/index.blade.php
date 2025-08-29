@@ -86,7 +86,7 @@
                         </table>
                     </div>
                     <div class="mt-4">
-                        {{ $fotos->links() }}
+                        {{ $fotos->links('vendor.pagination.tailwind-admin') }}
                     </div>
                 </div>
             </div>

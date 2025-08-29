@@ -90,7 +90,7 @@
                         </table>
                     </div>
                     <div class="mt-4">
-                        {{ $items->links() }}
+                        {{ $items->links('vendor.pagination.tailwind-admin') }}
                     </div>
                 </div>
             </div>
