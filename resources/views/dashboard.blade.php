@@ -47,7 +47,7 @@
                     <p class="ml-16 truncate text-sm font-medium text-gray-500">Total Opini & Berita</p>
                 </dt>
                 <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
-                    <p class="text-2xl font-semibold text-gray-900">{{ $jumlahOpiniBerita }}</p>
+                    <p class="text-2xl font-semibold text-gray-900">{{ $jumlahOpini }}</p>
                 </dd>
             </div>
 
@@ -106,7 +106,7 @@
                 <p class="mt-4 font-semibold text-gray-800">Tambah Publikasi Baru</p>
             </a>
 
-            <a href="{{ route('admin.opini-berita.create') }}"
+            <a href="{{ route('admin.opini.create') }}"
                 class="flex flex-col items-center justify-center rounded-lg bg-white p-6 shadow hover:shadow-lg transition-shadow">
                 <div class="flex h-16 w-16 items-center justify-center rounded-full bg-indigo-100">
                     <i class="bi bi-newspaper text-2xl text-indigo-600"></i>
