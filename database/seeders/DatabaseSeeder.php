@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
             KomunitasUmkmHalalSeeder::class,
 
             // Opini & Berita Seeder
-            OpiniBeritaSeeder::class,
+            // OpiniBeritaSeeder::class,
 
             // Galeri Kegiatan Seeders
             // Old Seeders
