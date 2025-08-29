@@ -28,7 +28,7 @@ class GaleriKegiatanSeeder extends Seeder
                 'keterangan' => 'Multifinance Syariah',
             ],
             [
-                'foto' => '4.jpg',
+                'foto' => '4.JPG',
                 'keterangan' => 'Bagi Takjil dan Buka Bersama',
             ],
             [

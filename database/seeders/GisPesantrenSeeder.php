@@ -16,27 +16,27 @@ class GisPesantrenSeeder extends Seeder
     {
         $pesantrenItems = [
             [
-                'foto' => '1. RPMS Chapter 3.JPG',
+                'foto' => '1.RPMSChapter3.JPG',
                 'keterangan' => 'RPMS Chapter 3',
             ],
             [
-                'foto' => '2. Rpms Chapter 2.png',
+                'foto' => '2.RpmsChapter2.JPG',
                 'keterangan' => 'RPMS Chapter 2',
             ],
             [
-                'foto' => '3. Rpms Chapter 1.png',
+                'foto' => '3.RpmsChapter1.JPG',
                 'keterangan' => 'RPMS Chapter 1',
             ],
             [
-                'foto' => '4. Rpms Chapter 3.png',
+                'foto' => '4.RpmsChapter3.JPG',
                 'keterangan' => 'RPMS Chapter 3',
             ],
             [
-                'foto' => '5. Rpms Chapter 1.png',
+                'foto' => '5.RpmsChapter1.JPG',
                 'keterangan' => 'RPMS Chapter 1',
             ],
             [
-                'foto' => '6. Rpms Chapter 1.png',
+                'foto' => '6.RpmsChapter1.JPG',
                 'keterangan' => 'RPMS Chapter 1',
             ],
         ];

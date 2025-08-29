@@ -31,22 +31,22 @@ class PublikasiSeeder extends Seeder
             [
                 'kategori' => 'Khazanah',
                 'nama' => '2. Khazanah',
-                'file' => '2. Khazanah.JPG',
+                'file' => '2.Khazanah.JPG',
             ],
             [
                 'kategori' => 'Khazanah',
                 'nama' => '3. Khazanah',
-                'file' => '3. Khazanah.JPG',
+                'file' => '3.Khazanah.JPG',
             ],
             [
                 'kategori' => 'Khazanah',
                 'nama' => '4. Khazanah',
-                'file' => '4. Khazanah.JPG',
+                'file' => '4.Khazanah.JPG',
             ],
             [
                 'kategori' => 'Khazanah',
                 'nama' => '5. Khazanah',
-                'file' => '5. Khazanah.JPG',
+                'file' => '5.Khazanah.JPG',
             ],
 
             // Peringatan Hari Besar

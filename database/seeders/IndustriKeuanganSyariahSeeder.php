@@ -16,27 +16,27 @@ class IndustriKeuanganSyariahSeeder extends Seeder
     {
         $items = [
             [
-                'foto' => '1. Multifinance Syariah.jpg',
+                'foto' => '1.MultifinanceSyariah.jpg',
                 'judul' => 'Multifinance Syariah',
             ],
             [
-                'foto' => '2. Workshop Literasi Keuangan Syariah.png',
+                'foto' => '2.WorkshopLiterasiKeuanganSyariah.JPG',
                 'judul' => 'Workshop Literasi Keuangan Syariah',
             ],
             [
-                'foto' => '3. FLWF Chapter Kendal New.jpg',
+                'foto' => '3.FLWFChapterKendalNew.JPG',
                 'judul' => 'FLWF Chapter Kendal New',
             ],
             [
-                'foto' => '4. Ngopi Investor Halal Kendal new.jpg',
+                'foto' => '4.NgopiInvestorHalalKendalnew.JPG',
                 'judul' => 'Ngopi Investor Halal Kendal new',
             ],
             [
-                'foto' => '5. WPMS Chapter Kendal.png',
+                'foto' => '5.WPMSChapterKendal.JPG',
                 'judul' => 'WPMS Chapter Kendal',
             ],
             [
-                'foto' => '6. Semnas dan Launching Gis Pesantren.jpg',
+                'foto' => '6.SemnasdanLaunchingGisPesantren.JPG',
                 'judul' => 'Semnas dan Launching Gis Pesantren',
             ],
         ];
