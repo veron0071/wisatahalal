@@ -108,10 +108,15 @@
                                 ],
                             ],
                         ],
-                        'opini-berita' => [
-                            'icon' => 'bi-newspaper',
+                        // 'opini-berita' => [
+                        //     'icon' => 'bi-newspaper',
+                        //     'label' => 'Opini & Berita',
+                        //     'route' => 'admin.opini-berita.index',
+                        // ],
+                        'opini' => [
+                            'icon' => 'bi-chat-left-text',
                             'label' => 'Opini & Berita',
-                            'route' => 'admin.opini-berita.index',
+                            'route' => 'admin.opini.index',
                         ],
                         // 'ekosistem-halal' => [
                         //     'icon' => 'bi-bounding-box-circles',

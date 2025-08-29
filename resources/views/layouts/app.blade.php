@@ -162,11 +162,14 @@
                             <li><a href="{{ route('sertifikasi-halal.index') }}"
                                     class="block p-2 text-sm rounded-lg hover:bg-gray-50">Sertifikasi
                                     Produk Halal</a></li>
-                            <li><a href="{{ route('industri-keuangan-syariah.index') }}" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Industri
+                            <li><a href="{{ route('industri-keuangan-syariah.index') }}"
+                                    class="block p-2 text-sm rounded-lg hover:bg-gray-50">Industri
                                     Keuangan Syariah</a></li>
-                            <li><a href="{{ route('komunitas-investor.index') }}" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Komunitas
+                            <li><a href="{{ route('komunitas-investor.index') }}"
+                                    class="block p-2 text-sm rounded-lg hover:bg-gray-50">Komunitas
                                     Investor Halal Kendal</a></li>
-                            <li><a href="{{ route('komunitas-umkm.index') }}" class="block p-2 text-sm rounded-lg hover:bg-gray-50">Komunitas UMKM
+                            <li><a href="{{ route('komunitas-umkm.index') }}"
+                                    class="block p-2 text-sm rounded-lg hover:bg-gray-50">Komunitas UMKM
                                     Halal Kendal</a></li>
                         </ul>
                     </li>
@@ -176,13 +179,12 @@
                         <button @click="open = !open"
                             class="flex items-center justify-between w-full p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100">
                             {{-- PERUBAHAN DI SINI --}}
-                            <span class="ml-3 flex-grow text-left"><a href="{{ route('berita.index') }}">Opini &
+                            <span class="ml-3 flex-grow text-left"><a href="{{ route('opini.index') }}">Opini &
                                     Berita</a></span>
                         </button>
                     </li>
 
 
-                </ul>
             </nav>
         </aside>
 
