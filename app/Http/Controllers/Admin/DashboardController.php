@@ -8,7 +8,7 @@ use App\Models\ProgramKerja;
 use App\Models\Galeri;
 use App\Models\Publikasi;
 use App\Models\KawasanWisataHalal;
-use App\Models\OpiniBerita;
+use App\Models\Opini;
 use App\Models\PotensiKerjasama;
 
 class DashboardController extends Controller
@@ -20,7 +20,7 @@ class DashboardController extends Controller
         $jumlahGaleri = Galeri::count();
         $jumlahPublikasi = Publikasi::count();
         $jumlahKawasan = KawasanWisataHalal::count();
-        $jumlahOpiniBerita = OpiniBerita::count();
+        $jumlahOpini = Opini::count();
         $jumlahPotensiKerjasama = PotensiKerjasama::count();
 
         // Kirim semua data ke view
@@ -29,7 +29,7 @@ class DashboardController extends Controller
             'jumlahGaleri',
             'jumlahPublikasi',
             'jumlahKawasan',
-            'jumlahOpiniBerita',
+            'jumlahOpini',
             'jumlahPotensiKerjasama'
         ));
     }

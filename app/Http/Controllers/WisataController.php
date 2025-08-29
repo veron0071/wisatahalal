@@ -44,15 +44,15 @@ class WisataController extends Controller
     {
 
         // Kode di bawah ini tidak akan dieksekusi untuk sementara
-        $homeSetting = HomeSetting::find(1);
-        $profil = ProfilLembaga::find(1);
-        $visiMisi = VisiMisi::find(1);
-        $struktur = StrukturOrganisasi::find(1);
-        $roadmap = Roadmap::find(1);
+        $homeSetting = HomeSetting::firstOrNew();
+        $profil = ProfilLembaga::firstOrNew(); // Tetap menggunakan ProfilLembaga model
+        $visiMisi = VisiMisi::firstOrNew();
+        $struktur = StrukturOrganisasi::firstOrNew();
+        $roadmap = Roadmap::firstOrNew();
 
         return view('home', compact(
             'homeSetting',
-            'profil',
+            'profil', // Tapi kirim sebagai 'profil'
             'visiMisi',
             'struktur',
             'roadmap'
@@ -327,13 +327,9 @@ class WisataController extends Controller
         $featuredKawasan = KawasanWisataHalal::with('dokumentasi')->latest()->first();
 
         $kawasans = KawasanWisataHalal::with('dokumentasi')
-            ->when($featuredKawasan, function ($query) use ($featuredKawasan) {
-                return $query->where('id', '!=', $featuredKawasan->id);
-            })
             ->latest()
             ->paginate(8);
 
-        // PERUBAHAN DI SINI: Mengarah ke folder 'ekosistemhalal.kawasanwisata'
         return view('ekosistemhalal.kawasanwisata.index', compact('featuredKawasan', 'kawasans'));
     }
 
