@@ -7,8 +7,9 @@ use App\Http\Controllers\WisataController;
 use App\Http\Controllers\TentangKamiController;
 use App\Http\Controllers\ProgramKerjaController;
 use App\Http\Controllers\GaleriController;
-use App\Http\Controllers\OpiniBeritaController;
+// use App\Http\Controllers\OpiniBeritaController;
 use App\Http\Controllers\PublikasiController;
+use App\Http\Controllers\OpiniController;
 
 // Controllers for Authentication and Profile (from Breeze)
 use App\Http\Controllers\ProfileController;
@@ -43,6 +44,9 @@ use App\Http\Controllers\Admin\SertifikasiHalalController;
 
 // Industri Keuangan Syariah Controller
 use App\Http\Controllers\Admin\IndustriKeuanganSyariahController;
+
+// Opini & Berita Controller
+use App\Http\Controllers\Admin\OpiniController as AdminOpiniController;
 
 // Old Controllers
 use App\Http\Controllers\Admin\ArtikelIlmiahController;
@@ -103,7 +107,8 @@ Route::get('/fasilitas', [WisataController::class, 'fasilitasIndex'])->name('fas
 Route::get('/fasilitas/{fasilitas}', [WisataController::class, 'fasilitasShow'])->name('fasilitas.show');
 Route::get('/umkm', [WisataController::class, 'umkmIndex'])->name('umkm.index');
 Route::get('/program', [WisataController::class, 'programIndex'])->name('program.index');
-Route::get('/opiniberita', [OpiniBeritaController::class, 'index'])->name('berita.index');
+// Route::get('/opiniberita', [OpiniBeritaController::class, 'index'])->name('berita.index');
+Route::get('/opini', [OpiniController::class, 'index'])->name('opini.index');
 Route::get('/publikasi', [PublikasiController::class, 'index'])->name('publikasi.index');
 
 // Route::get('/ulama', [WisataController::class, 'ulamaIndex'])->name('ulama.index');
@@ -204,27 +209,27 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     // Route::patch('/pendataan-umkm', [PendataanUmkmController::class, 'update'])->name('pendataan-umkm.update');
 
     // Opini & Berita
-    Route::resource('opini-berita', \App\Http\Controllers\Admin\OpiniBeritaController::class);
+    // Route::resource('opini-berita', \App\Http\Controllers\Admin\OpiniBeritaController::class);
+    Route::resource('opini', AdminOpiniController::class);
 
-
-    Route::resource('posts', PostController::class);
-    Route::resource('ulama', UlamaController::class);
+    // Route::resource('posts', PostController::class);
+    // Route::resource('ulama', UlamaController::class);
     // Route::resource('fasilitas', FasilitasController::class);
     // Tak ganti mas iki error
-    Route::resource('fasilitas', FasilitasController::class)->parameters(['fasilitas' => 'fasilitas']);
-    Route::resource('umkm', UmkmController::class);
-    Route::resource('ceramahs', CeramahController::class);
-    Route::resource('paketwisatas', PaketWisataController::class);
-    Route::resource('sertifikasis', SertifikasiController::class);
-    Route::resource('ziarahs', ZiarahController::class);
-    Route::resource('manuskrips', ManuskripController::class);
-    Route::resource('stakeholders', StakeholderController::class);
-    Route::resource('videos', VideoController::class);
-    Route::resource('heritages', HeritageController::class);
-    Route::resource('lokasi-ziarahs', LokasiZiarahController::class);
-    Route::resource('pelatihans', PelatihanController::class);
-    Route::resource('artikels', ArtikelController::class);
-    Route::resource('kajians', KajianController::class);
+    // Route::resource('fasilitas', FasilitasController::class)->parameters(['fasilitas' => 'fasilitas']);
+    // Route::resource('umkm', UmkmController::class);
+    // Route::resource('ceramahs', CeramahController::class);
+    // Route::resource('paketwisatas', PaketWisataController::class);
+    // Route::resource('sertifikasis', SertifikasiController::class);
+    // Route::resource('ziarahs', ZiarahController::class);
+    // Route::resource('manuskrips', ManuskripController::class);
+    // Route::resource('stakeholders', StakeholderController::class);
+    // Route::resource('videos', VideoController::class);
+    // Route::resource('heritages', HeritageController::class);
+    // Route::resource('lokasi-ziarahs', LokasiZiarahController::class);
+    // Route::resource('pelatihans', PelatihanController::class);
+    // Route::resource('artikels', ArtikelController::class);
+    // Route::resource('kajians', KajianController::class);
 
 });
 
