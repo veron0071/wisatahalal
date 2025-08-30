@@ -109,6 +109,7 @@ Route::get('/umkm', [WisataController::class, 'umkmIndex'])->name('umkm.index');
 Route::get('/program', [WisataController::class, 'programIndex'])->name('program.index');
 // Route::get('/opiniberita', [OpiniBeritaController::class, 'index'])->name('berita.index');
 Route::get('/opini', [OpiniController::class, 'index'])->name('opini.index');
+Route::get('/opini/{opini}', [OpiniController::class, 'show'])->name('opini.show');
 Route::get('/publikasi', [PublikasiController::class, 'index'])->name('publikasi.index');
 
 // Route::get('/ulama', [WisataController::class, 'ulamaIndex'])->name('ulama.index');
