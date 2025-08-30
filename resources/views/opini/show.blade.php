@@ -22,8 +22,14 @@
                     <div class="mt-8 prose max-w-none text-justify leading-relaxed text-gray-600">{!! nl2br(e($post->isi)) !!}
                     </div>
                     @if ($post->file_url)
-                        <a href="{{ $post->file_url }}" target="_blank" class="mt-8 inline-flex items-center ...">
-                            Unduh Dokumen Lampiran <svg ...></svg>
+                        <a href="{{ $post->file_url }}" target="_blank"
+                            class="mt-8 inline-flex items-center justify-center gap-2 w-full bg-jabal-green text-white font-semibold px-6 py-3 rounded-full hover:bg-opacity-90 transition-colors shadow-md">
+                            Unduh Dokumen Lampiran
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                            </svg>
                         </a>
                     @endif
                 </div>
