@@ -7,7 +7,7 @@
         @method('PATCH')
         <div class="bg-white shadow sm:rounded-lg">
             <div class="px-4 py-5 sm:p-6">
-                <h3 class="text-lg font-medium leading-6 text-gray-900">Formulir Edit Opini</h3>
+                <h3 class="text-lg font-medium leading-6 text-gray-900">Formulir Edit Opini & Berita</h3>
                 <p class="mt-1 max-w-2xl text-sm text-gray-500">Perbarui detail opini di bawah ini.</p>
 
                 <div class="mt-6 border-t border-gray-200 pt-6">

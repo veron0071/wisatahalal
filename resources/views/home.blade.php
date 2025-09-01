@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Wisata Halal Jabal Nur')
+@section('title', 'MES Kendal')
 
 @section('content')
     {{-- HERO SECTION --}}

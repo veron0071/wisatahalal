@@ -6,7 +6,7 @@
         @csrf
         <div class="bg-white shadow sm:rounded-lg">
             <div class="px-4 py-5 sm:p-6">
-                <h3 class="text-lg font-medium leading-6 text-gray-900">Formulir Opini Baru</h3>
+                <h3 class="text-lg font-medium leading-6 text-gray-900">Formulir Opini & Berita Baru</h3>
                 <p class="mt-1 max-w-2xl text-sm text-gray-500">Isi semua detail yang diperlukan.</p>
 
                 <div class="mt-6 border-t border-gray-200 pt-6">
